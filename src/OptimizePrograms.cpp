@@ -11,8 +11,9 @@ using namespace std;
 
 int main() {
 	auto i = 0;
+	auto y = 2;
 	cout << "!!!Hello Worl!!!" << endl; // prints !!!Hello World!!!
-	i=i+1;
+	i=i+y;
 	cout << i << endl;
 	return 0;
 }
