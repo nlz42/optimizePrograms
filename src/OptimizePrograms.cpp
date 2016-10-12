@@ -12,7 +12,6 @@ using namespace std;
 int main() {
 	auto i = 0;
 	auto y = 2;
-	auto z = 4;
 	cout << "!!!Hello Worl!!!" << endl; // prints !!!Hello World!!!
 	i=i+y;
 	cout << i << endl;
