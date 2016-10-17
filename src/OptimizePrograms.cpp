@@ -19,6 +19,9 @@ int main() {
 
 	// testing chrono library
 	auto start_time = chrono::high_resolution_clock::now();
+	int age = 0;
+	cin >> age;
+	cout << age << endl;
 	int temp;
 	for (int i = 0; i< 242000000; i++)
 		temp+=temp;
