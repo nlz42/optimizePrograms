@@ -1,4 +1,4 @@
-src/OptimizePrograms.o: ../src/OptimizePrograms.cpp ../src/TestCases.cpp \
+src/TestCases.o: ../src/TestCases.cpp \
  C:\Users\nlz\workspace-CPP\gTest\googletest-master\googletest\include/gtest/gtest.h \
  C:\Users\nlz\workspace-CPP\gTest\googletest-master\googletest\include/gtest/internal/gtest-internal.h \
  C:\Users\nlz\workspace-CPP\gTest\googletest-master\googletest\include/gtest/internal/gtest-port.h \
@@ -19,10 +19,7 @@ src/OptimizePrograms.o: ../src/OptimizePrograms.cpp ../src/TestCases.cpp \
  C:\Users\nlz\workspace-CPP\gTest\googletest-master\googletest\include/gtest/gtest_prod.h \
  C:\Users\nlz\workspace-CPP\gTest\googletest-master\googletest\include/gtest/gtest-test-part.h \
  C:\Users\nlz\workspace-CPP\gTest\googletest-master\googletest\include/gtest/gtest-typed-test.h \
- C:\Users\nlz\workspace-CPP\gTest\googletest-master\googletest\include/gtest/gtest_pred_impl.h \
- ../src/ExerciseAB.cpp
-
-../src/TestCases.cpp:
+ C:\Users\nlz\workspace-CPP\gTest\googletest-master\googletest\include/gtest/gtest_pred_impl.h
 
 C:\Users\nlz\workspace-CPP\gTest\googletest-master\googletest\include/gtest/gtest.h:
 
@@ -65,5 +62,3 @@ C:\Users\nlz\workspace-CPP\gTest\googletest-master\googletest\include/gtest/gtes
 C:\Users\nlz\workspace-CPP\gTest\googletest-master\googletest\include/gtest/gtest-typed-test.h:
 
 C:\Users\nlz\workspace-CPP\gTest\googletest-master\googletest\include/gtest/gtest_pred_impl.h:
-
-../src/ExerciseAB.cpp:

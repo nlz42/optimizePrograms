@@ -9,6 +9,13 @@
 
 template <typename T, size_t SIZE>
 
-void sortieren(std::array<T, SIZE> & a) {
+T min(std::array<T, SIZE> a) {
+	T result = a[0];
+	for(size_t i=0; i<SIZE;i++){
+		if(result>a[i]){
+			result = a[i];
+		}
+	}
+	return result;
 }
 
