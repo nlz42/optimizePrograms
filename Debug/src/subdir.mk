@@ -4,19 +4,16 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
-../src/ExerciseAB.cpp \
 ../src/OptimizePrograms.cpp \
-../src/TestCases.cpp 
+../src/TestArrays.cpp 
 
 OBJS += \
-./src/ExerciseAB.o \
 ./src/OptimizePrograms.o \
-./src/TestCases.o 
+./src/TestArrays.o 
 
 CPP_DEPS += \
-./src/ExerciseAB.d \
 ./src/OptimizePrograms.d \
-./src/TestCases.d 
+./src/TestArrays.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
