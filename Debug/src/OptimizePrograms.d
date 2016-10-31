@@ -22,7 +22,7 @@ src/OptimizePrograms.o: ../src/OptimizePrograms.cpp \
  C:\Users\nlz\workspace-CPP\gTest\googletest-master\googletest\include/gtest/gtest-typed-test.h \
  C:\Users\nlz\workspace-CPP\gTest\googletest-master\googletest\include/gtest/gtest_pred_impl.h \
  ../src/Headers/TestArrays.h ../src/Headers/ExerciseAB.h \
- ../src/Headers/Constants.h
+ ../src/Headers/Constants.h ../src/Headers/MeassureTime.h
 
 ../src/Headers/OptimizePrograms.h:
 
@@ -73,3 +73,5 @@ C:\Users\nlz\workspace-CPP\gTest\googletest-master\googletest\include/gtest/gtes
 ../src/Headers/ExerciseAB.h:
 
 ../src/Headers/Constants.h:
+
+../src/Headers/MeassureTime.h:

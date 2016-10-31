@@ -4,14 +4,17 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
+../src/MeassureTime.cpp \
 ../src/OptimizePrograms.cpp \
 ../src/TestArrays.cpp 
 
 OBJS += \
+./src/MeassureTime.o \
 ./src/OptimizePrograms.o \
 ./src/TestArrays.o 
 
 CPP_DEPS += \
+./src/MeassureTime.d \
 ./src/OptimizePrograms.d \
 ./src/TestArrays.d 
 
