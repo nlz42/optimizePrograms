@@ -8,10 +8,15 @@
 #ifndef HEADERS_MEASSURETIME_H_
 #define HEADERS_MEASSURETIME_H_
 #include <iostream>
+#include <chrono>
+#include <typeinfo>
 #include "TestArrays.h"
 #include <array>
 #include <stdlib.h>
-#include <chrono>
+
+//sing namespace std;
+
+
 
 /**
  * Komnzpet:
@@ -20,38 +25,32 @@
  */
 
 template<typename T, size_t SIZE>
-void meassureTime(T (*pFunc)(std::array<T, SIZE>)){
+void meassureTime(T (*pFunc)(std::array<T, SIZE>,size_t)){
 
-	std::cout << "bin jetzt hier";
-	std::array<int,128> a2 = initArray(a2, 0, 500);
-	std::cout << "Minimum Int: =" << pFunc(a2) << std::endl;
-	//T min = pFunc(a2);
-}
+	auto start_time = std::chrono::high_resolution_clock::now();
 
-template <typename T>
-void sometest(){
-	std::cout << "huiiiiiii";
-}
+	std::array<T,128> array = initArray(array, 0, 500);
+	size_t startIndex=0;
+	std::cout << "Typ: "<<typeid(T).name()<<", minimum ist: =" << pFunc(array,startIndex) << std::endl;
 
+	int j = 0;
+	for (int i= 0; i<9000000;i++){
+		j+=1;
+	}
 
-/**
-template <typename F>
-void getTime (){
+	auto end_time = std::chrono::high_resolution_clock::now();
 
-  	auto start_time = chrono::high_resolution_clock::now();
+	std::cout
+			<< std::chrono::duration_cast<std::chrono::seconds>(end_time - start_time).count()
+			<< "sec:";
 
-  	//f.run();
-
-
-	auto end_time = chrono::high_resolution_clock::now();
-	cout
-			<< chrono::duration_cast<chrono::seconds>(end_time - start_time).count()
-			<< ":";
-	cout
-			<< chrono::duration_cast<chrono::microseconds>(
-					end_time - start_time).count() << ":";
-	cout << "Hello world!" << endl;
+	std::cout
+			<< std::chrono::duration_cast<std::chrono::milliseconds>(end_time - start_time).count()
+			<< "millisec:";
+	std::cout
+			<< std::chrono::duration_cast<std::chrono::microseconds>(
+					end_time - start_time).count() << "microsec:";
 
 }
-**/
+
 #endif /* HEADERS_MEASSURETIME_H_ */

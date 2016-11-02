@@ -7,7 +7,12 @@
  */
 
 #include "Headers/MeassureTime.h"
-#include <array>
+
+using namespace std;
+
+void timefunction(){
+}
+
 
 
 

@@ -12,11 +12,7 @@ using namespace std;
 
 int main(int argc, char **argv) {
 
-	std::array<double,128> a1 = initArray(a1, 0, 50);
-	std::cout << "Values: \n" << a1[1]<<" , "<<a1[15]<<" , "<<a1[127];
 
-	std::array<int,128> a2 = initArray(a2, 0, 500);
-	std::cout << "Values: \n" << a2[1]<<" , "<<a2[15]<<" , "<<a2[127] << "\n";
 
 	meassureTime<int, 128>(minNormal);
 
