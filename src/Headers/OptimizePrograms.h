@@ -19,5 +19,6 @@
 #include "Constants.h"
 #include "MeassureTime.h"
 
+void flushCache();
 
 #endif

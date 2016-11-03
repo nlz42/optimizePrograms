@@ -7,43 +7,50 @@
 //============================================================================
 #include "Headers/OptimizePrograms.h"
 
-
 using namespace std;
+
+//TODO Type und Size als Constanten festlegen.
+std::array<int,12800> resultArr;
 
 int main(int argc, char **argv) {
 
-
-
 	//meassureTime<int, 20>(minNormal);
-	std::array<int, 6400> array = initArray(array, 1, 9);
+	std::array<int, 12800> array = initArray(array, 1, 5);
 
-	meassureTimeSort(selectionSortNormal,array);
+	flushCache();
 
-//	cout<<"test2"<<endl;
-//	for (size_t i=0;i<array.size();i++){
-//		cout<<array[i];
-//	}
-//	cout<<"test2"<<endl;
+	meassureTimeSort(selectionSortNormal, array);
 
-	meassureTimeSort(selectionSortmin2loops,array);
+	flushCache();
 
-	meassureTimeSort(selectionSortPrefetch,array);
+	resultArr = meassureTimeSort(selectionSortmin2loops, array);
+	flushCache();
 
-	//meassureTimeSort<int, 15>(selectionSortmin2loops);
+	meassureTimeSort(selectionSortPrefetch, array);
 
-	//::testing::InitGoogleTest(&argc, argv);
-	//int testResult = RUN_ALL_TESTS();
-	//if(testResult != 0){
-	//	return testResult;
-	//	}
 
-	return 0;
+	::testing::InitGoogleTest(&argc, argv);
+	return RUN_ALL_TESTS();
+}
+
+//TODO How secure flush L1 Cache?
+void flushCache() {
+	std::array<int, 2048> array = initArray(array, 5, 1);
+}
+
+int checkArray(std::array<int,12800> array){
+	int result = 1; // true
+	for(size_t i=0;i<array.size()-1;i++){
+		if(!(array[i]<=array[i+1])){
+			result=0; // false
+		}
+	}
+return result;
 }
 
 TEST (TestSchleifen, normal) {
-	//EXPECT_EQ(3, minNormal());
+	EXPECT_EQ(1, checkArray(resultArr));
 }
-
 
 TEST (TestSchleifen, ZweiSchleifen) {
 	//EXPECT_EQ(3, minTwoLoops(initArrays64()));
