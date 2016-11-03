@@ -11,20 +11,33 @@
 
 //TODO impl selection sort
 template <typename T, size_t SIZE>
-std::array<T, SIZE> selectionSort(std::array<T,SIZE> array){
-	T min = array[0];
-	for(size_t i=1;i<SIZE;i++){
-		//hioer jetzet minimum funtionen aufrugfen
-		//TODO Index zurückliefern ! und swap einfügen
+std::array<T, SIZE> selectionSortNormal(std::array<T,SIZE> array){
+	size_t min = 0;
+	for(size_t i=0;i<SIZE;i++){
 		min = minNormal(array,i);
-		//XXX kp ob das so geht !!!
-		std::swap(&array[i],&array[min]);
+		std::swap(array[i],array[min]);
 	}
-//XXX just for testing
-	for (size_t i=0;i<SIZE;i++){
-		std::cout<<array[i]<<", ";
-	}
+	return array;
+}
 
+template <typename T, size_t SIZE>
+std::array<T, SIZE> selectionSortmin2loops(std::array<T,SIZE> array){
+	size_t min = 0;
+	for(size_t i=0;i<SIZE;i++){
+		min = minTwoLoops(array,i);
+		std::swap(array[i],array[min]);
+	}
+	return array;
+}
+
+template <typename T, size_t SIZE>
+std::array<T, SIZE> selectionSortPrefetch(std::array<T,SIZE> array){
+	size_t min = 0;
+	for(size_t i=0;i<SIZE;i++){
+		min = minTwoLoopsPrefetch(array,i);
+		std::swap(array[i],array[min]);
+	}
+	return array;
 }
 
 

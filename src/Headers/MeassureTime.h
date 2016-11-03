@@ -11,12 +11,11 @@
 #include <chrono>
 #include <typeinfo>
 #include "TestArrays.h"
+#include "Constants.h"
 #include <array>
 #include <stdlib.h>
 
 //sing namespace std;
-
-
 
 /**
  * Komnzpet:
@@ -25,32 +24,47 @@
  */
 
 template<typename T, size_t SIZE>
-void meassureTime(T (*pFunc)(std::array<T, SIZE>,size_t)){
+void meassureTime(size_t (*pFunc)(std::array<T, SIZE>,size_t)) {
 
 	auto start_time = std::chrono::high_resolution_clock::now();
 
-	std::array<T,128> array = initArray(array, 0, 500);
-	size_t startIndex=0;
-	std::cout << "Typ: "<<typeid(T).name()<<", minimum ist: =" << pFunc(array,startIndex) << std::endl;
-
-	int j = 0;
-	for (int i= 0; i<9000000;i++){
-		j+=1;
-	}
+	std::array<T, SIZE> array = initArray(array, 1, 10);
+	size_t startIndex = 0;
 
 	auto end_time = std::chrono::high_resolution_clock::now();
 
 	std::cout
-			<< std::chrono::duration_cast<std::chrono::seconds>(end_time - start_time).count()
-			<< "sec:";
-
-	std::cout
-			<< std::chrono::duration_cast<std::chrono::milliseconds>(end_time - start_time).count()
-			<< "millisec:";
+			<< std::chrono::duration_cast<std::chrono::milliseconds>(
+					end_time - start_time).count() << "millisec:";
 	std::cout
 			<< std::chrono::duration_cast<std::chrono::microseconds>(
 					end_time - start_time).count() << "microsec:";
 
 }
+
+template<typename T, size_t SIZE>
+//void meassureTimeSort(std::array<T, SIZE> (*pFunc)(std::array<T, SIZE>)) {
+void meassureTimeSort(std::array<T, SIZE> (*pFunc)(std::array<T, SIZE>), std::array<T,SIZE> array) {
+
+	auto start_time = std::chrono::high_resolution_clock::now();
+
+	//std::array<T, SIZE> array = initArray(array, 1, 9);
+	array = pFunc(array);
+
+	auto end_time = std::chrono::high_resolution_clock::now();
+
+	std::cout
+			<< std::chrono::duration_cast<std::chrono::milliseconds>(
+					end_time - start_time).count() << "millisec:";
+	std::cout
+			<< std::chrono::duration_cast<std::chrono::microseconds>(
+					end_time - start_time).count() << "microsec:";
+//	for(size_t i =0;i<SIZE;i++){
+//		std::cout<<array[i]<<", ";
+//	}
+	std::cout<<std::endl;
+
+}
+
 
 #endif /* HEADERS_MEASSURETIME_H_ */

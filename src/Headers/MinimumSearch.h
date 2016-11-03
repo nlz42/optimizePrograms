@@ -10,46 +10,46 @@
 #include <array>
 #include "Constants.h"
 
-
-/**
- * TODO: statt werte nur indexe merken ! schenller
- */
-template <typename T, size_t SIZE>
-T minNormal(std::array<T, SIZE> a, size_t left){
-	T result = a[0];
-	for(size_t i=0; i<SIZE;i++){
-		if(result>a[i]){
-			result = a[i];
+template<typename T, size_t SIZE>
+size_t minNormal(std::array<T, SIZE> a, size_t left) {
+	size_t minIndex = left;
+	for (; left < SIZE; left++) {
+		if (a[minIndex] > a[left]) {
+			minIndex = left;
 		}
 	}
-	return result;;
+	return minIndex;
 }
 
-template <typename T, size_t SIZE>
-T minTwoLoops(std::array<T, SIZE> a){
-	T result = a[0];
-	for (size_t i=0;i<SIZE;i+=LINE_SIZE){
-		for(size_t j=0;j<64;j++){
-			if(result>a[i+j]){
-				result = a[i+j];
+//todo left indexer
+template<typename T, size_t SIZE>
+size_t minTwoLoops(std::array<T, SIZE> a, size_t left) {
+	size_t STEP = LINE_SIZE/sizeof(T);
+	size_t minIndex = left;
+	for (; left < SIZE; left+=STEP) {
+		for (size_t j=0; j < STEP && (j+left)<SIZE; j++) {
+			if (a[minIndex] > a[left + j]) {
+				minIndex = left + j;
 			}
 		}
 	}
-	return result;;
+	return minIndex;
 }
 
 //TODO Check if prefetch is in correct order
-template <typename T, size_t SIZE>
-T minTwoLoopsPrefetch(std::array<T, SIZE> a){
-	T result = a[0];
-	for (size_t i=0;i<SIZE;i+=64){
-		for(size_t j=0;j<64;j++){
-			if(result>a[i+j]){
-				result = a[i+j];
+template<typename T, size_t SIZE>
+size_t minTwoLoopsPrefetch(std::array<T, SIZE> a, size_t left) {
+	size_t STEP = LINE_SIZE/sizeof(T);
+	size_t minIndex = left;
+	for (; left < SIZE; left+=STEP) {
+		__builtin_prefetch(&a[left+STEP+1]);
+		for (size_t j=0; j < STEP && (j+left)<SIZE; j++) {
+			if (a[minIndex] > a[left + j]) {
+				minIndex = left + j;
 			}
 		}
 	}
-	return result;;
+	return minIndex;
 }
 
 #endif /* HEADERS_MINIMUMSEARCH_H_ */

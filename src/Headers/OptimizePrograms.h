@@ -10,13 +10,14 @@
 #include <cstdio>
 #endif
 
-//#include <array>
 //#include <chrono>
+#include <array>
 #include "gtest/gtest.h"
 //#include "TestArrays.h"
 #include "MinimumSearch.h"
+#include "SelectionSort.h"
 #include "Constants.h"
 #include "MeassureTime.h"
-#include "SelectionSort.h"
+
 
 #endif
