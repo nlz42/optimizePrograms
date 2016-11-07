@@ -11,7 +11,7 @@
 #include "Constants.h"
 
 template<typename T, size_t SIZE>
-size_t minNormal(std::array<T, SIZE> a, size_t left) {
+size_t minNormal(std::array<T, SIZE>&a, size_t left) {
 	size_t minIndex = left;
 	for (; left < SIZE; left++) {
 		if (a[minIndex] > a[left]) {
@@ -21,9 +21,8 @@ size_t minNormal(std::array<T, SIZE> a, size_t left) {
 	return minIndex;
 }
 
-//todo left indexer
 template<typename T, size_t SIZE>
-size_t minTwoLoops(std::array<T, SIZE> a, size_t left) {
+size_t minTwoLoops(std::array<T, SIZE> &a, size_t left) {
 	size_t STEP = LINE_SIZE/sizeof(T);
 	size_t minIndex = left;
 	for (; left < SIZE; left+=STEP) {
@@ -38,7 +37,7 @@ size_t minTwoLoops(std::array<T, SIZE> a, size_t left) {
 
 //TODO Check if prefetch is in correct order
 template<typename T, size_t SIZE>
-size_t minTwoLoopsPrefetch(std::array<T, SIZE> a, size_t left) {
+size_t minTwoLoopsPrefetch(std::array<T, SIZE> &a, size_t left) {
 	size_t STEP = LINE_SIZE/sizeof(T);
 	size_t minIndex = left;
 	for (; left < SIZE; left+=STEP) {

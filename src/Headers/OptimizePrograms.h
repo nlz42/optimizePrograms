@@ -12,6 +12,7 @@
 
 //#include <chrono>
 #include <array>
+#include <memory>
 #include "gtest/gtest.h"
 //#include "TestArrays.h"
 #include "MinimumSearch.h"

@@ -11,33 +11,30 @@
 
 //TODO impl selection sort
 template <typename T, size_t SIZE>
-std::array<T, SIZE> selectionSortNormal(std::array<T,SIZE> array){
+void selectionSortNormal(std::array<T,SIZE> &array){
 	size_t min = 0;
 	for(size_t i=0;i<SIZE;i++){
 		min = minNormal(array,i);
 		std::swap(array[i],array[min]);
 	}
-	return array;
 }
 
 template <typename T, size_t SIZE>
-std::array<T, SIZE> selectionSortmin2loops(std::array<T,SIZE> array){
+void selectionSortmin2loops(std::array<T,SIZE> &array){
 	size_t min = 0;
 	for(size_t i=0;i<SIZE;i++){
 		min = minTwoLoops(array,i);
 		std::swap(array[i],array[min]);
 	}
-	return array;
 }
 
 template <typename T, size_t SIZE>
-std::array<T, SIZE> selectionSortPrefetch(std::array<T,SIZE> array){
+void selectionSortPrefetch(std::array<T,SIZE> &array){
 	size_t min = 0;
 	for(size_t i=0;i<SIZE;i++){
 		min = minTwoLoopsPrefetch(array,i);
 		std::swap(array[i],array[min]);
 	}
-	return array;
 }
 
 

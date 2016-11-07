@@ -44,12 +44,12 @@ void meassureTime(size_t (*pFunc)(std::array<T, SIZE>,size_t)) {
 
 template<typename T, size_t SIZE>
 //void meassureTimeSort(std::array<T, SIZE> (*pFunc)(std::array<T, SIZE>)) {
-std::array<T, SIZE> meassureTimeSort(std::array<T, SIZE> (*pFunc)(std::array<T, SIZE>), std::array<T,SIZE> array) {
+void meassureTimeSort( void(*pFunc)(std::array<T,SIZE> &a), std::array<T,SIZE>&array) {
 
 	auto start_time = std::chrono::high_resolution_clock::now();
 
 	//std::array<T, SIZE> array = initArray(array, 1, 9);
-	array = pFunc(array);
+	pFunc(array);
 
 	auto end_time = std::chrono::high_resolution_clock::now();
 
@@ -63,8 +63,6 @@ std::array<T, SIZE> meassureTimeSort(std::array<T, SIZE> (*pFunc)(std::array<T, 
 //		std::cout<<array[i]<<", ";
 //	}
 	std::cout<<std::endl;
-	return array;
-
 }
 
 

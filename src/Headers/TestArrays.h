@@ -21,10 +21,17 @@ std::array<double, ArraySize> initArray(std::array<double, ArraySize> array,
 }
 
 template<std::size_t ArraySize>
-std::array<int, ArraySize> initArray(std::array<int, ArraySize> array,
-		std::size_t MIN, std::size_t MAX) {
+void initArray(std::array<int, ArraySize> &array, size_t MIN, size_t MAX) {
 	for (size_t i = 0; i < ArraySize; i++) {
 		array[i] = MIN + (rand() % (MAX - MIN + 1));
+	}
+}
+
+template<typename T, std::size_t ArraySize>
+std::array<T, ArraySize> initArraySort(std::array<T, ArraySize> array,
+		std::size_t MIN, std::size_t MAX) {
+	for (size_t i = 0; i < ArraySize; i++) {
+		array[i] = (T) i;
 	}
 	return array;
 }
