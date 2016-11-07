@@ -21,6 +21,7 @@ int main(int argc, char **argv) {
 	cout<<"firstmin:= "<<minTwoLoopsPrefetch(*foo,0)<<endl;
 
 	meassureTimeSort(selectionSortNormal, *foo);
+	flushCache();
 	cout<<"Value 0: "<<(*foo)[0]<<endl;
 	initArray(*foo,1,100);
 	cout<<"New Value 0: "<<(*foo)[0]<<endl;
@@ -42,7 +43,10 @@ int main(int argc, char **argv) {
 
 //TODO How secure flush L1 Cache?
 void flushCache() {
-	cout<<"flush todo";
+	std::shared_ptr<array<int, SIZEbig>> flushArray(new array<int, SIZEbig>);
+	initArray(*flushArray,MIN,MAX);
+	minNormal(*flushArray,0);
+	cout<<"flush cash sucess"<<endl;
 }
 
 int checkArray(std::array<int, 12800> array) {

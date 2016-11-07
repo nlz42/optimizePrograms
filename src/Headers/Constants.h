@@ -11,8 +11,10 @@
 //CONSTANT Values in Bytes
 const int LINE_SIZE = 64;
 const int L1_CACHE_SIZE = 4096;
-const size_t SIZEsmall = 1024*100;
+const size_t SIZEsmall = 1024*10;
 const size_t SIZEbig = 1024*100000;
+const size_t MIN = 1;
+const size_t MAX = 500;
 
 #endif /* HEADERS_CONSTANTS_H_ */
 
