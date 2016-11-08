@@ -10,60 +10,64 @@
 using namespace std;
 
 //TODO Type und Size als Constanten festlegen.
-std::array<int, 12800> resultArr;
 
 int main(int argc, char **argv) {
 
 	//meassureTime<int, 20>(minNormal);
-	std::shared_ptr<array<int, SIZEsmall>> foo(new array<int, SIZEsmall>);
+	std::shared_ptr<array<int, SIZEsmall>> array1(new array<int, SIZEsmall>);
 
-	initArray(*foo,1,100);
-	cout<<"firstmin:= "<<minTwoLoopsPrefetch(*foo,0)<<endl;
+	//run first
+	initArray(*array1,1,100);
+	minTwoLoopsPrefetch(*array1,0);
+	//flushCache();
+	//factorial<int, 32000>;
+	recTime<int,SIZEsmall> test;
+	test.meassureTimeSort(selectionSortNormal, *array1);
 
-	meassureTimeSort(selectionSortNormal, *foo);
+	// end first
+/**
+	//run second
+	initArray(*array1,1,100);
+	minTwoLoopsPrefetch(*array1,0);
 	flushCache();
-	cout<<"Value 0: "<<(*foo)[0]<<endl;
-	initArray(*foo,1,100);
-	cout<<"New Value 0: "<<(*foo)[0]<<endl;
-	meassureTimeSort(selectionSortmin2loops, *foo);
-	cout<<"Value 0: "<<(*foo)[0]<<endl;
-	initArray(*foo,1,100);
-	cout<<"New Value 0: "<<(*foo)[0]<<endl;
-	meassureTimeSort(selectionSortPrefetch, *foo);
-	cout<<"Value 0: "<<(*foo)[0]<<"Das wars"<<endl;
+	meassureTimeSort(selectionSortmin2loops, *array1);
+	// end first
 
-	for(size_t i=0;i<10;i++){
-		cout<<(*foo)[i]<<endl;
-	}
+	//run third
+	initArray(*array1,1,100);
+	minTwoLoopsPrefetch(*array1,0);
+	flushCache();
+	meassureTimeSort(selectionSortPrefetch, *array1);
+	// end first
 
 	::testing::InitGoogleTest(&argc, argv);
 	return RUN_ALL_TESTS();
+	*/
+	return 0;
 
 }
 
-//TODO How secure flush L1 Cache?
-void flushCache() {
-	std::shared_ptr<array<int, SIZEbig>> flushArray(new array<int, SIZEbig>);
-	initArray(*flushArray,MIN,MAX);
-	minNormal(*flushArray,0);
-	cout<<"flush cash sucess"<<endl;
+
+
+
+TEST (TestSelectionSort, normal) {
+	std::shared_ptr<array<int, 100>> testArray(new array<int, 100>);
+	initArray(*testArray,1,20);
+	selectionSortNormal(*testArray);
+	EXPECT_EQ(1, checkArray(*testArray));
 }
 
-int checkArray(std::array<int, 12800> array) {
-	int result = 1; // true
-	for (size_t i = 0; i < array.size() - 1; i++) {
-		if (!(array[i] <= array[i + 1])) {
-			result = 0; // false
-		}
-	}
-	return result;
-}
 
-TEST (TestSchleifen, normal) {
-	EXPECT_EQ(1, checkArray(resultArr));
+TEST (TestSelectionSort, 2Loops) {
+	std::shared_ptr<array<int, 100>> testArray(new array<int, 100>);
+	initArray(*testArray,1,20);
+	selectionSortmin2loops(*testArray);
+	EXPECT_EQ(1, checkArray(*testArray));
 }
-
-TEST (TestSchleifen, ZweiSchleifen) {
-	//EXPECT_EQ(3, minTwoLoops(initArrays64()));
+TEST (TestSelectionSort, 2LoopsPrefetch) {
+	std::shared_ptr<array<int, 100>> testArray(new array<int, 100>);
+	initArray(*testArray,1,20);
+	selectionSortPrefetch(*testArray);
+	EXPECT_EQ(1, checkArray(*testArray));
 }
 

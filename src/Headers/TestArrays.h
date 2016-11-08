@@ -11,6 +11,8 @@
 #include<array>
 #include <stdlib.h>
 
+void flushCache();
+
 template<std::size_t ArraySize>
 std::array<double, ArraySize> initArray(std::array<double, ArraySize> array,
 		std::size_t MIN, std::size_t MAX) {
