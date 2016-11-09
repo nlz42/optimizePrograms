@@ -12,17 +12,17 @@ using namespace std;
 //TODO Type und Size als Constanten festlegen.
 
 int main(int argc, char **argv) {
-
-	//meassureTime<int, 20>(minNormal);
 	std::shared_ptr<array<int, SIZEsmall>> array1(new array<int, SIZEsmall>);
 
 	//run first
 	initArray(*array1,1,100);
-	minTwoLoopsPrefetch(*array1,0);
-	//flushCache();
-	//factorial<int, 32000>;
+	ALGO algo;
+	algo = sortSelectionSortNormal;
 	recTime<int,SIZEsmall> test;
-	test.meassureTimeSort(selectionSortNormal, *array1);
+	test.meassureTimeSort(selectionSortNormal, *array1, algo);
+
+
+	//meassureTimeSortFunc(selectionSortNormal, *array1);
 
 	// end first
 /**

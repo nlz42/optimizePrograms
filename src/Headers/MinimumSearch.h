@@ -35,7 +35,6 @@ size_t minTwoLoops(std::array<T, SIZE> &a, size_t left) {
 	return minIndex;
 }
 
-//TODO Check if prefetch is in correct order
 template<typename T, size_t SIZE>
 size_t minTwoLoopsPrefetch(std::array<T, SIZE> &a, size_t left) {
 	size_t STEP = LINE_SIZE/sizeof(T);
