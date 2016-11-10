@@ -10,28 +10,27 @@
 #include <iostream>
 #include<array>
 #include <stdlib.h>
+#include "Constants.h"
+#include <memory>
 
 void flushCache();
 
 template<std::size_t ArraySize>
-std::array<double, ArraySize> initArray(std::array<double, ArraySize> array,
-		std::size_t MIN, std::size_t MAX) {
+void initArray(std::array<double, ArraySize> &array) {
 	for (size_t i = 0; i < ArraySize; i++) {
-		array[i] = (double) MIN + (((double) rand() / RAND_MAX)) * (MAX - MIN);
+		array[i] = (double) MIN + (((double) rand() / RAND_MAX)) * (MAXD - MIND);
 	}
-	return array;
 }
 
 template<std::size_t ArraySize>
-void initArray(std::array<int, ArraySize> &array, size_t MIN, size_t MAX) {
+void initArray(std::array<int, ArraySize> &array) {
 	for (size_t i = 0; i < ArraySize; i++) {
 		array[i] = MIN + (rand() % (MAX - MIN + 1));
 	}
 }
 
 template<typename T, std::size_t ArraySize>
-std::array<T, ArraySize> initArraySort(std::array<T, ArraySize> array,
-		std::size_t MIN, std::size_t MAX) {
+void initArraySort(std::array<T, ArraySize> &array) {
 	for (size_t i = 0; i < ArraySize; i++) {
 		array[i] = (T) i;
 	}
@@ -39,7 +38,3 @@ std::array<T, ArraySize> initArraySort(std::array<T, ArraySize> array,
 }
 
 #endif /* HEADERS_TESTARRAYS_H_ */
-
-/**
- * zu kleinen doenle werte zu gering der vorteil.
- */

@@ -9,16 +9,12 @@
 #define HEADERS_SELECTIONSORT_H_
 #include "MinimumSearch.h"
 
-//TODO impl selection sort
 template <typename T, size_t SIZE>
 void selectionSortNormal(std::array<T,SIZE> &array){
 	size_t min = 0;
 	for(size_t i=0;i<SIZE;i++){
 		min = minNormal(array,i);
 		std::swap(array[i],array[min]);
-		if(i==63999){
-			std::cout<<"Jetzte Hier ;-))"<< std::endl;
-		}
 	}
 }
 

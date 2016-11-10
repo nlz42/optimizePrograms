@@ -17,67 +17,52 @@
 #include <array>
 #include <stdlib.h>
 
-//sing namespace std;
+template<typename T, size_t SIZE>
+struct recTime {
+	void meassureTimeSort(int algo) {
+		std::shared_ptr<std::array<T, SIZE>> array(new std::array<T, SIZE>);
 
-/**
- * Komnzpet:
- * Meassure Time bekommt Funktikon Übergeben
- * Erzuegt selber die nötigen Arrays zur Zeitzmessung.
- */
-template <typename T, size_t SIZE>
-struct recTime  {
-		void meassureTimeSort(void (*pFunc)(std::array<T, SIZE> &a),
-				std::array<T, SIZE>&array, ALGO algo){
-			flushCache();
+		auto pFunc1 = choiceAlgoSimple(algo);
 
-			auto start_time = std::chrono::high_resolution_clock::now();
+		initArray(*array);
+		flushCache();
+		auto start_time = std::chrono::high_resolution_clock::now();
+		pFunc1(*array);
+		auto end_time = std::chrono::high_resolution_clock::now();
+		std::cout
+				<< std::chrono::duration_cast<std::chrono::milliseconds>(
+						end_time - start_time).count() << ",ms," <<" bei N=," <<SIZE <<std::endl;
 
-			pFunc(array);
+		recTime<T, SIZE * 2> tc;
+		std::shared_ptr<std::array<T, SIZE * 2>> array1(
+				new std::array<T, SIZE * 2>);
+		tc.meassureTimeSort(algo);
+	}
+	;
 
-			auto end_time = std::chrono::high_resolution_clock::now();
-
-			std::cout
-					<< std::chrono::duration_cast<std::chrono::milliseconds>(
-							end_time - start_time).count() << "ms:" << SIZE;
-
-			recTime<T,SIZE*2> tc;
-			std::shared_ptr<std::array<int, SIZE*2>> array1(new std::array<int, SIZE*2>);
-			auto *pFunc2 = choiceAlgo(algo);
-
-			tc.meassureTimeSort(*pFunc2, *array1, algo);
-		};
-
-		auto choiceAlgo(ALGO algo){
-			switch ( algo )
-			{
-			    case sortSelectionSortNormal:
-			        return selectionSortNormal<T,(SIZE*2)>;
-			        break;
-			    case sortSelectionSortMin2Loops:
-			    	return selectionSortmin2loops<T,(SIZE*2)>;
-			    	break;
-			    default:
-			    	return selectionSortNormal<T,(SIZE*2)>;
-			}
-
+	auto choiceAlgoSimple(int algo) {
+		switch (algo) {
+		case 0:
+			return selectionSortNormal<T, (SIZE)> ;
+			break;
+		case 1:
+			return selectionSortmin2loops<T, (SIZE)> ;
+			break;
+		case 2:
+			return selectionSortPrefetch<T, (SIZE)> ;
+			break;
+		default:
+			std::cout << std::endl << "ERROR ### ERROR" << std::endl;
+			exit(1);
 		}
+
+	}
 };
 
 template<typename T>
-struct recTime <T, 64000> {
-	void meassureTimeSort(void (*pFunc)(std::array<T, 64000> &a),
-			std::array<T, 64000>&array, ALGO algo) {
-		flushCache();
-
-		auto start_time = std::chrono::high_resolution_clock::now();
-
-		pFunc(array);
-
-		auto end_time = std::chrono::high_resolution_clock::now();
-
-		std::cout
-				<< std::chrono::duration_cast<std::chrono::milliseconds>(
-						end_time - start_time).count() << "ms:ENDE REKURSION";
-	};
+struct recTime<T, RecCancel> {
+	void meassureTimeSort(int algo) {
+	}
+	;
 };
 #endif /* HEADERS_MEASSURETIME_H_ */
