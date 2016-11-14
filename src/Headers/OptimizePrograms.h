@@ -31,4 +31,15 @@ int checkArray(std::array<T,SIZE> &array) {
 	return result;
 }
 
+template <typename T, size_t SIZE>
+int checkArrayDesc(std::array<T,SIZE> &array) {
+	int result = 1; // true
+	for (size_t i = 0; i < array.size() - 1; i++) {
+		if (!(array[i] >= array[i + 1])) {
+			result = 0; // false
+		}
+	}
+	return result;
+}
+
 #endif

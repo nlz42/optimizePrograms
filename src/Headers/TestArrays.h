@@ -30,11 +30,17 @@ void initArray(std::array<int, ArraySize> &array) {
 }
 
 template<typename T, std::size_t ArraySize>
-void initArraySort(std::array<T, ArraySize> &array) {
+void initArrayAscending(std::array<T, ArraySize> &array) {
 	for (size_t i = 0; i < ArraySize; i++) {
 		array[i] = (T) i;
 	}
-	return array;
+}
+
+template<typename T, std::size_t ArraySize>
+void initArrayDescending(std::array<T, ArraySize> &array) {
+	for (size_t i = 0; i < ArraySize ; i++) {
+		array[i] = (T) ArraySize-i;
+	}
 }
 
 #endif /* HEADERS_TESTARRAYS_H_ */

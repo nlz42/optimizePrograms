@@ -23,16 +23,18 @@ struct recTime {
 		std::shared_ptr<std::array<T, SIZE>> array(new std::array<T, SIZE>);
 
 		auto pFunc1 = choiceAlgoSimple(algo);
+		for (size_t i = 0; i<3; i++) {
+			initArrayValues(i, *array);
+			flushCache();
+			auto start_time = std::chrono::high_resolution_clock::now();
+			pFunc1(*array);
+			auto end_time = std::chrono::high_resolution_clock::now();
+			std::cout
+					<< std::chrono::duration_cast<std::chrono::milliseconds>(
+							end_time - start_time).count() << ",ms,"
+					<< " bei N=," << SIZE << std::endl;
 
-		initArray(*array);
-		flushCache();
-		auto start_time = std::chrono::high_resolution_clock::now();
-		pFunc1(*array);
-		auto end_time = std::chrono::high_resolution_clock::now();
-		std::cout
-				<< std::chrono::duration_cast<std::chrono::milliseconds>(
-						end_time - start_time).count() << ",ms," <<" bei N=," <<SIZE <<std::endl;
-
+		}
 		recTime<T, SIZE * 2> tc;
 		std::shared_ptr<std::array<T, SIZE * 2>> array1(
 				new std::array<T, SIZE * 2>);
@@ -57,11 +59,34 @@ struct recTime {
 		}
 
 	}
+
+	void initArrayValues(int i, std::array<T, SIZE> &array) {
+		switch (i) {
+		case 0:
+			initArray(array);
+			std::cout << "Random Array,";
+			break;
+		case 1:
+			initArrayAscending(array);
+			std::cout << "Ascending Array,";
+			break;
+		case 2:
+			initArrayDescending(array);
+			std::cout << "Descending Array,";
+			break;
+		default:
+			initArray(array);
+			break;
+
+		}
+	}
 };
 
 template<typename T>
 struct recTime<T, RecCancel> {
 	void meassureTimeSort(int algo) {
+		algo = 0;
+		algo = algo - 1;
 	}
 	;
 };

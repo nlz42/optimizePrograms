@@ -16,12 +16,6 @@ int main(int argc, char **argv) {
 		return 1;
 	}
 
-	for (int i=0 ; i<3;i++){
-		cout<<ALGO[i]<<" Integer"<<endl;
-		recTime<int,SIZEsmall> testInt;
-		testInt.meassureTimeSort(i);
-		cout<<endl;
-	}
 	for(int i=0; i<3;i++){
 		cout<<ALGO[i]<<" Typ Double"<<endl;
 		recTime<double,SIZEsmall> testDouble;
@@ -32,7 +26,14 @@ int main(int argc, char **argv) {
 	return 0;
 }
 
-
+TEST(ArrayIinitialisations, all){
+	std::shared_ptr<array<int, 100>> testArray(new array<int, 100>);
+	initArrayAscending(*testArray);
+	EXPECT_EQ(1,checkArray(*testArray));
+	std::shared_ptr<array<int, 100>> testArray2(new array<int, 100>);
+	initArrayDescending(*testArray2);
+	EXPECT_EQ(1,checkArrayDesc(*testArray2));
+}
 
 
 TEST (TestSelectionSort, normal) {
@@ -46,8 +47,6 @@ TEST (TestSelectionSort, normal) {
 	selectionSortNormal(*testArrayD);
 	EXPECT_EQ(1, checkArray(*testArrayD));
 }
-
-
 TEST (TestSelectionSort, 2Loops) {
 	std::shared_ptr<array<int, 100>> testArray(new array<int, 100>);
 	initArray(*testArray);
