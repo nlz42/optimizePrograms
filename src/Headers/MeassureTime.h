@@ -36,8 +36,6 @@ struct recTime {
 
 		}
 		recTime<T, SIZE * 2> tc;
-		std::shared_ptr<std::array<T, SIZE * 2>> array1(
-				new std::array<T, SIZE * 2>);
 		tc.meassureTimeSort(algo);
 	}
 	;

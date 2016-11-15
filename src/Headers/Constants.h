@@ -25,7 +25,7 @@ const int MIN = 1;
 const int MAX = 500;
 const double MIND = 0.1;
 const double MAXD = 1.0;
-const size_t RecCancel = 128000*2;
+const size_t RecCancel = 256000*2;
 
 const std::string ALGO[]={
 		"SelectionsSortNormal","SelectionSort2Loops","SelectionsSortPrefetch"

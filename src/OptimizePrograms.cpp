@@ -12,29 +12,28 @@ using namespace std;
 int main(int argc, char **argv) {
 	::testing::InitGoogleTest(&argc, argv);
 	int testResult = RUN_ALL_TESTS();
-	if(testResult){
+	if (testResult) {
 		return 1;
 	}
 
-	for(int i=0; i<3;i++){
-		cout<<ALGO[i]<<" Typ Double"<<endl;
-		recTime<double,SIZEsmall> testDouble;
+	for (int i = 0; i < 3; i++) {
+		cout << ALGO[i] << " Typ Double" << endl;
+		recTime<double, SIZEsmall> testDouble;
 		testDouble.meassureTimeSort(i);
-		cout<<endl;
+		cout << endl;
 	}
 
 	return 0;
 }
 
-TEST(ArrayIinitialisations, all){
+TEST(ArrayIinitialisations, all) {
 	std::shared_ptr<array<int, 100>> testArray(new array<int, 100>);
 	initArrayAscending(*testArray);
-	EXPECT_EQ(1,checkArray(*testArray));
+	EXPECT_EQ(1, checkArray(*testArray));
 	std::shared_ptr<array<int, 100>> testArray2(new array<int, 100>);
 	initArrayDescending(*testArray2);
-	EXPECT_EQ(1,checkArrayDesc(*testArray2));
+	EXPECT_EQ(1, checkArrayDesc(*testArray2));
 }
-
 
 TEST (TestSelectionSort, normal) {
 	std::shared_ptr<array<int, 100>> testArray(new array<int, 100>);
@@ -58,6 +57,17 @@ TEST (TestSelectionSort, 2Loops) {
 	selectionSortmin2loops(*testArrayD);
 	EXPECT_EQ(1, checkArray(*testArrayD));
 }
+TEST (TestSelectionSort, 2LoopsDoubledoppelt) {
+	std::shared_ptr<array<double, 5>> testArray(new array<double, 5>);
+	(*testArray)[0] = 0.0;
+	(*testArray)[1] = 0.2;
+	(*testArray)[2] = 0.2;
+	(*testArray)[3] = 0.8;
+	(*testArray)[4] = 0.4;
+	selectionSortmin2loops(*testArray);
+	EXPECT_EQ(1, checkArray(*testArray));
+}
+
 TEST (TestSelectionSort, 2LoopsPrefetch) {
 	std::shared_ptr<array<int, 100>> testArray(new array<int, 100>);
 	initArray(*testArray);
