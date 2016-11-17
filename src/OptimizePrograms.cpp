@@ -46,6 +46,12 @@ TEST (TestSelectionSort, normal) {
 	selectionSortNormal(*testArrayD);
 	EXPECT_EQ(1, checkArray(*testArrayD));
 }
+TEST (TestSelectionSort, normalChars) {
+	array<string,11> arrS;
+	arrS ={{"a","b","b","b","c","d","f","u","a","g","z"}};
+	selectionSortNormal(arrS);
+	EXPECT_EQ(1, checkArray(arrS));
+}
 TEST (TestSelectionSort, 2Loops) {
 	std::shared_ptr<array<int, 100>> testArray(new array<int, 100>);
 	initArray(*testArray);

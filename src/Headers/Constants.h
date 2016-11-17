@@ -19,7 +19,7 @@
 const int LINE_SIZE = 64;
 const int L1_CACHE_SIZE = 4096;
 const size_t SIZEsmall = 16000; // 102.400
-const size_t SIZEbig = 1024*1000; // 1.024.000
+const size_t SIZEbig = 1024*10000; // 10.240.000
 //Const für array erzeugung und rekurions abbruch
 const int MIN = 1;
 const int MAX = 500;
