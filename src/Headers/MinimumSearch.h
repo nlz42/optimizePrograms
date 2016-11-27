@@ -37,7 +37,7 @@ size_t minTwoLoops(std::array<T, SIZE> &a, size_t left) {
 
 template<typename T, size_t SIZE>
 size_t minTwoLoopsPrefetch(std::array<T, SIZE> &a, size_t left) {
-	size_t STEP = LINE_SIZE/sizeof(T);
+	const size_t STEP = LINE_SIZE/sizeof(T);
 	size_t minIndex = left;
 	for (; left < SIZE; left+=STEP) {
 		__builtin_prefetch(&a[left+STEP+1]);

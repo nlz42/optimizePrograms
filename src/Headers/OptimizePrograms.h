@@ -17,6 +17,7 @@
 //#include "TestArrays.h"
 #include "MinimumSearch.h"
 #include "SelectionSort.h"
+#include "InsertionSort.h"
 #include "Constants.h"
 #include "MeassureTime.h"
 

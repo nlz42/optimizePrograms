@@ -9,12 +9,19 @@
 
 using namespace std;
 
-int main(int argc, char **argv) {
+//int main(int argc, char **argv) {
+	int main() {
+
+	std::shared_ptr<array<double, 64>> testArray(new array<double, 64>);
+	initArray(*testArray);
+	insertionSortPrefetch(*testArray);
+/**
 	::testing::InitGoogleTest(&argc, argv);
 	int testResult = RUN_ALL_TESTS();
 	if (testResult) {
 		return 1;
 	}
+
 
 	for (int i = 0; i < 3; i++) {
 		cout << ALGO[i] << " Typ Double" << endl;
@@ -22,6 +29,7 @@ int main(int argc, char **argv) {
 		testDouble.meassureTimeSort(i);
 		cout << endl;
 	}
+*/
 
 	return 0;
 }
@@ -84,5 +92,12 @@ TEST (TestSelectionSort, 2LoopsPrefetch) {
 	initArray(*testArrayD);
 	selectionSortPrefetch(*testArrayD);
 	EXPECT_EQ(1, checkArray(*testArrayD));
+}
+
+TEST (TestInsertionSort, Normal) {
+	std::shared_ptr<array<int, 100>> testArray(new array<int, 100>);
+	initArray(*testArray);
+	insertionSortNormal(*testArray);
+	EXPECT_EQ(1, checkArray(*testArray));
 }
 
