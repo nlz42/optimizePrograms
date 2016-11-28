@@ -35,7 +35,7 @@ struct recTime {
 					<< " bei N=," << SIZE << std::endl;
 
 		}
-		recTime<T, SIZE * 2> tc;
+		recTime<T, (SIZE / 2)> tc;
 		tc.meassureTimeSort(algo);
 	}
 	;
@@ -50,6 +50,12 @@ struct recTime {
 			break;
 		case 2:
 			return selectionSortPrefetch<T, (SIZE)> ;
+			break;
+		case 3:
+			return insertionSortNormal<T, (SIZE)>;
+			break;
+		case 4:
+			return insertionSortPrefetch<T, (SIZE)>;
 			break;
 		default:
 			std::cout << std::endl << "ERROR ### ERROR" << std::endl;
