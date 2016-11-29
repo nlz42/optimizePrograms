@@ -110,3 +110,15 @@ TEST (TestInsertionSort, Prefetch) {
 	EXPECT_EQ(1, checkArray(*testArrayD));
 }
 
+TEST (TestInsertionSort, littleArrays) {
+	array<int, 11> arrI;
+	arrI = { {1,6,3,56,8,3,2,1,0,3,5}};
+	insertionSortPrefetch(arrI);
+	EXPECT_EQ(1, checkArray(arrI));
+
+	array<string, 11> arrS;
+	arrS = { {"a","b","b","b","c","d","f","u","a","g","z"}};
+	insertionSortPrefetch(arrS);
+	EXPECT_EQ(1, checkArray(arrS));
+}
+
