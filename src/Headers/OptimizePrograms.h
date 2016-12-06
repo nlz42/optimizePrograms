@@ -17,6 +17,7 @@
 #include "MinimumSearch.h"
 #include "SelectionSort.h"
 #include "InsertionSort.h"
+#include "ButtomUpMergesort.h"
 #include "Constants.h"
 #include "MeassureTime.h"
 

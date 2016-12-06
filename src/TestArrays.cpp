@@ -99,7 +99,7 @@ TEST (TestInsertionSort, normal) {
 }
 
 TEST (TestInsertionSort, Prefetch) {
-	std::shared_ptr<array<int, 100>> testArray(new array<int, 100>);
+	std::shared_ptr<array<int, 128>> testArray(new array<int, 128>);
 	initArray(*testArray);
 	insertionSortPrefetch(*testArray);
 	EXPECT_EQ(1, checkArray(*testArray));
@@ -110,11 +110,17 @@ TEST (TestInsertionSort, Prefetch) {
 	EXPECT_EQ(1, checkArray(*testArrayD));
 }
 
-TEST (TestInsertionSort, littleArrays) {
+
+TEST (TestInsertionSort, littleArraysPrefetch) {
 	array<int, 11> arrI;
 	arrI = { {1,6,3,56,8,3,2,1,0,3,5}};
 	insertionSortPrefetch(arrI);
 	EXPECT_EQ(1, checkArray(arrI));
+
+	array<int, 5> arrIl;
+	arrIl = { {3,6,1,3,9}};
+	insertionSortPrefetch(arrIl);
+	EXPECT_EQ(1, checkArray(arrIl));
 
 	array<string, 11> arrS;
 	arrS = { {"a","b","b","b","c","d","f","u","a","g","z"}};

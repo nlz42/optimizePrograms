@@ -12,6 +12,11 @@ using namespace std;
 int main(int argc, char** argv) {
 	::testing::InitGoogleTest(&argc, argv);
 	runAllTests();
+	//
+	/**
+	array<int, 8> array;
+	array={7,6,4,2,4,3,6,3};
+	mergeSort(array);
 
 	for (int i = 0; i < 3; i++) {
 		cout << ALGO[i] << " Typ Double" << endl;
@@ -26,6 +31,7 @@ int main(int argc, char** argv) {
 		testDouble.meassureTimeSort(i);
 		cout << endl;
 	}
+	*/
 
 	return 0;
 }

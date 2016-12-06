@@ -1,8 +1,8 @@
 src/OptimizePrograms.o: ../src/OptimizePrograms.cpp \
  ../src/Headers/OptimizePrograms.h ../src/Headers/MinimumSearch.h \
  ../src/Headers/Constants.h ../src/Headers/SelectionSort.h \
- ../src/Headers/InsertionSort.h ../src/Headers/MeassureTime.h \
- ../src/Headers/TestArrays.h \
+ ../src/Headers/InsertionSort.h ../src/Headers/ButtomUpMergesort.h \
+ ../src/Headers/MeassureTime.h ../src/Headers/TestArrays.h \
  C:\Users\nlz\workspace-CPP\gTest\googletest-master\googletest\include/gtest/gtest.h \
  C:\Users\nlz\workspace-CPP\gTest\googletest-master\googletest\include/gtest/internal/gtest-internal.h \
  C:\Users\nlz\workspace-CPP\gTest\googletest-master\googletest\include/gtest/internal/gtest-port.h \
@@ -34,6 +34,8 @@ src/OptimizePrograms.o: ../src/OptimizePrograms.cpp \
 ../src/Headers/SelectionSort.h:
 
 ../src/Headers/InsertionSort.h:
+
+../src/Headers/ButtomUpMergesort.h:
 
 ../src/Headers/MeassureTime.h:
 
