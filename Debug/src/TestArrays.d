@@ -21,7 +21,8 @@ src/TestArrays.o: ../src/TestArrays.cpp ../src/Headers/TestArrays.h \
  C:\Users\nlz\workspace-CPP\gTest\googletest-master\googletest\include/gtest/gtest-typed-test.h \
  C:\Users\nlz\workspace-CPP\gTest\googletest-master\googletest\include/gtest/gtest_pred_impl.h \
  ../src/Headers/Constants.h ../src/Headers/SelectionSort.h \
- ../src/Headers/MinimumSearch.h ../src/Headers/InsertionSort.h
+ ../src/Headers/MinimumSearch.h ../src/Headers/InsertionSort.h \
+ ../src/Headers/ButtomUpMergesort.h
 
 ../src/Headers/TestArrays.h:
 
@@ -74,3 +75,5 @@ C:\Users\nlz\workspace-CPP\gTest\googletest-master\googletest\include/gtest/gtes
 ../src/Headers/MinimumSearch.h:
 
 ../src/Headers/InsertionSort.h:
+
+../src/Headers/ButtomUpMergesort.h:
