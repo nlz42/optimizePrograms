@@ -133,6 +133,7 @@ TEST (TestButoomUp, normal) {
 	std::shared_ptr<array<double, 128>> testArrayD(new array<double, 128>);
 	initArray(*testArrayD);
 	mergeSort(*testArrayD);
+
 	EXPECT_EQ(1, checkArray(*testArrayD));
 
 	std::shared_ptr<array<double, 8388608>> testArrayBIG(new array<double, 8388608>);
