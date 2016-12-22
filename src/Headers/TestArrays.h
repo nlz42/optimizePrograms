@@ -26,6 +26,7 @@
 #include "SelectionSort.h"
 #include "InsertionSort.h"
 #include "ButtomUpMergesort.h"
+#include "QuickSort.h"
 #include <memory>
 
 void flushCache();

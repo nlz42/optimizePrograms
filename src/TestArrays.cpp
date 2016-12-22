@@ -130,16 +130,32 @@ TEST (TestInsertionSort, littleArraysPrefetch) {
 
 TEST (TestButoomUp, normal) {
 	//Test with double
-	std::shared_ptr<array<double, 128>> testArrayD(new array<double, 128>);
+	std::shared_ptr<array<double, 8>> testArrayD(new array<double, 8>);
 	initArray(*testArrayD);
 	mergeSort(*testArrayD);
 
 	EXPECT_EQ(1, checkArray(*testArrayD));
 
-	std::shared_ptr<array<double, 8388608>> testArrayBIG(new array<double, 8388608>);
-	initArray(*testArrayBIG);
-	mergeSort(*testArrayBIG);
-	EXPECT_EQ(1, checkArray(*testArrayD));
+//	std::shared_ptr<array<double, 8388608>> testArrayBIG(new array<double, 8388608>);
+//	initArray(*testArrayBIG);
+//	mergeSort(*testArrayBIG);
+//	EXPECT_EQ(1, checkArray(*testArrayD));
 
 }
+
+TEST (TestQuickSort, normal) {
+	//Test with double
+	std::shared_ptr<array<double, 8>> testArrayD(new array<double, 8>);
+	initArray(*testArrayD);
+	quickSort(*testArrayD);
+	EXPECT_EQ(1, checkArray(*testArrayD));
+	//Test worh little bit morde datas
+	std::shared_ptr<array<double, 1000>> testArrayBig(new array<double, 1000>);
+	initArray(*testArrayBig);
+	quickSort(*testArrayBig);
+	EXPECT_EQ(1, checkArray(*testArrayBig));
+}
+
+
+
 

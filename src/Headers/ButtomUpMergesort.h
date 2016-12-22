@@ -13,8 +13,8 @@ template<typename T, size_t SIZE>
 void mergeBitonic(std::array<T, SIZE> &array, std::array<T, SIZE> &wrkArray,
 		size_t merge_step) {
 	size_t wrk_ptr = 0; // pointer for wrkArray
-	size_t left_ptr = 0; // right ptr of array
-	size_t right_ptr = 0; // left ptr of array
+	size_t left_ptr = 0; // left ptr of array
+	size_t right_ptr = 0; // right ptr of array
 	size_t middle_border = merge_step;
 	//big loop
 	while (wrk_ptr < SIZE) {
