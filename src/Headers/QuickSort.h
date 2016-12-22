@@ -8,49 +8,40 @@
 #ifndef HEADERS_QUICKSORT_H_
 #define HEADERS_QUICKSORT_H_
 
+template<std::size_t N, typename T>
+void threeWayPartioning(std::array<T, N>& array, size_t left_ptr, size_t right_ptr) {
 
-template <typename T, size_t SIZE>
-void partioningArray(std::array<T,SIZE> &a, size_t l, size_t r, size_t &middle){
-
-	size_t i=l+1;
-	size_t j=r;
-	T p = a[l];
-
-	//ptr runs into the middle#
-	while (i<=j){
-		if(a[i] <= p){
-			i++;
-		} else if(a[j] > p){
-			j--;
-		} else {
-			std::swap(a[i],a[j]);
-		}
-	}
-	//set p onto the middle of the two sub array
-	std::swap(a[l],a[j]);
-	middle = j;
-}
-
-template <typename T, size_t SIZE>
-void threeWayPartition(std::array<T,SIZE> &array, size_t left, size_t right){
-	//little helper
-	size_t middle =0;
-	//array is empty
-	if(left >= right){
+	//rec cancel
+	if(right_ptr<=left_ptr){
 		return;
 	}
-	partioningArray(array,left,right, middle);
 
-	threeWayPartition(array,left,middle-1);
-	threeWayPartition(array,middle+1,right);
+	size_t startleft = left_ptr;
+	size_t startright = right_ptr;
 
+	std::size_t itr = left_ptr;
+
+	T pivot = array[right_ptr-1];
+
+	while(itr < right_ptr) {
+		if(array[itr]< pivot) {
+			std::swap(array[itr++], array[left_ptr++]);
+		} else if (array[itr]== pivot) {
+			itr++; //no swapping needed is equal
+		} else {
+			std::swap(array[itr], array[right_ptr-1]);
+			right_ptr--;
+		}
+	}
+
+	threeWayPartioning(array, startleft, left_ptr);
+	threeWayPartioning(array, itr, startright);
 }
+
 
 template<typename T, size_t SIZE>
 void quickSort(std::array<T,SIZE> &array){
-
-	threeWayPartition(array,0,SIZE-1);
-
+	threeWayPartioning(array,0,SIZE-1);
 }
 
 
