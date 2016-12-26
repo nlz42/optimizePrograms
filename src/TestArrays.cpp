@@ -146,24 +146,23 @@ void runAllTests() {
 TEST (TestQuickSort, normal) {
 
 	//test with descending sorted array (worst-case)
-	std::shared_ptr<array<double, 30>> testArrayDESC(new array<double, 30>);
+	std::shared_ptr<array<double, 100>> testArrayDESC(new array<double, 100>);
 	initArrayDescending(*testArrayDESC);
 	quickSort(*testArrayDESC);
 	EXPECT_EQ(1, checkArray(*testArrayDESC));
-	for(size_t i=0;i<30;i++){
-		std::cout<<(*testArrayDESC)[i]<<std::endl;
-	}
 
-	//Test with double
-	std::shared_ptr<array<double, 10>> testArrayD(new array<double, 10>);
-	initArray(*testArrayD);
-	quickSort(*testArrayD);
-	EXPECT_EQ(1, checkArray(*testArrayD));
-	//test with ascending sorted array (worst-case)
-	std::shared_ptr<array<double, 30>> testArrayASC(new array<double, 30>);
+	//test with ascending sorted array
+	std::shared_ptr<array<double, 100>> testArrayASC(new array<double, 100>);
 	initArrayAscending(*testArrayASC);
 	quickSort(*testArrayASC);
 	EXPECT_EQ(1, checkArray(*testArrayASC));
+
+	//test with random array
+	std::shared_ptr<array<double, 100>> testArrayR(new array<double, 100>);
+	initArray(*testArrayR);
+	quickSort(*testArrayR);
+	EXPECT_EQ(1, checkArray(*testArrayR));
+
 }
 
 
