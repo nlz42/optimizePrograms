@@ -165,6 +165,14 @@ TEST (TestQuickSort, normal) {
 
 }
 
+TEST (TestQuickSortHybrid, normal) {
+	//test with descending sorted array (worst-case)
+	std::shared_ptr<array<double, 100>> testArrayDESC(new array<double, 100>);
+	initArrayDescending(*testArrayDESC);
+	hybridQuickSort(*testArrayDESC);
+	EXPECT_EQ(1, checkArray(*testArrayDESC));
+}
+
 
 
 

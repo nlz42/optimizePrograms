@@ -24,7 +24,7 @@ src/OptimizePrograms.o: ../src/OptimizePrograms.cpp \
  C:\Users\nlz\workspace-CPP\gTest\googletest-master\googletest\include/gtest/gtest-test-part.h \
  C:\Users\nlz\workspace-CPP\gTest\googletest-master\googletest\include/gtest/gtest-typed-test.h \
  C:\Users\nlz\workspace-CPP\gTest\googletest-master\googletest\include/gtest/gtest_pred_impl.h \
- ../src/Headers/QuickSort.h
+ ../src/Headers/QuickSort.h ../src/Headers/CheckArrrays.h
 
 ../src/Headers/OptimizePrograms.h:
 
@@ -85,3 +85,5 @@ C:\Users\nlz\workspace-CPP\gTest\googletest-master\googletest\include/gtest/gtes
 C:\Users\nlz\workspace-CPP\gTest\googletest-master\googletest\include/gtest/gtest_pred_impl.h:
 
 ../src/Headers/QuickSort.h:
+
+../src/Headers/CheckArrrays.h:
