@@ -98,17 +98,17 @@ void runAllTests() {
 //	EXPECT_EQ(1, checkArray(*testArrayD));
 //}
 //
-//TEST (TestInsertionSort, Prefetch) {
-//	std::shared_ptr<array<int, 128>> testArray(new array<int, 128>);
-//	initArray(*testArray);
-//	insertionSortPrefetch(*testArray);
-//	EXPECT_EQ(1, checkArray(*testArray));
-//	//Test with double
-//	std::shared_ptr<array<double, 100>> testArrayD(new array<double, 100>);
-//	initArray(*testArrayD);
-//	insertionSortPrefetch(*testArrayD);
-//	EXPECT_EQ(1, checkArray(*testArrayD));
-//}
+TEST (TestInsertionSort, Prefetch) {
+	std::shared_ptr<array<int, 128>> testArray(new array<int, 128>);
+	initArray(*testArray);
+	insertionSortPrefetch(*testArray,0,127);
+	EXPECT_EQ(1, checkArray(*testArray));
+	//Test with double
+	std::shared_ptr<array<double, 100>> testArrayD(new array<double, 100>);
+	initArray(*testArrayD);
+	insertionSortPrefetch(*testArrayD,0,99);
+	EXPECT_EQ(1, checkArray(*testArrayD));
+}
 //
 //
 //TEST (TestInsertionSort, littleArraysPrefetch) {
@@ -171,6 +171,11 @@ TEST (TestQuickSortHybrid, normal) {
 	initArrayDescending(*testArrayDESC);
 	hybridQuickSort(*testArrayDESC);
 	EXPECT_EQ(1, checkArray(*testArrayDESC));
+	//test with random array
+	std::shared_ptr<array<double, 100>> testArrayRandom(new array<double, 100>);
+	initArray(*testArrayRandom);
+	hybridQuickSort(*testArrayRandom);
+	EXPECT_EQ(1, checkArray(*testArrayRandom));
 }
 
 

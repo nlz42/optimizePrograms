@@ -21,14 +21,14 @@ void insertionSortNormal(std::array<T, SIZE> &array) {
 }
 
 template<typename T, size_t SIZE>
-void insertionSortPrefetch(std::array<T, SIZE> &array) {
+void insertionSortPrefetch(std::array<T, SIZE> &array, size_t startIndex, size_t endIndex) {
 	const size_t STEP = LINE_SIZE / sizeof(T);
 	size_t index=0;
-	for (size_t i = 1; i < SIZE; i++) {
+	for (size_t i = startIndex+1; i <= endIndex; i++) {
 		index=i;
-		for (; array[index-1]>array[index] && index>0;) {
+		for (; array[index-1]>array[index] && index>startIndex;) {
 			__builtin_prefetch(&array[index - (2*STEP)]);
-			for(size_t k=(STEP);index>0 && k>0 && array[index-1]>array[index];k--){
+			for(size_t k=(STEP);index>startIndex && k>startIndex && array[index-1]>array[index];k--){
 				std::swap(array[index-1], array[index]);
 				index = index-1;
 			}

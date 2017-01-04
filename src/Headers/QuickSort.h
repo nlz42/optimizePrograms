@@ -47,11 +47,14 @@ void startquickSort(std::array<T, N>& arr, size_t p, size_t r) {
 template<std::size_t N, typename T>
 void startHybridQuickSort(std::array<T, N>& arr, size_t p, size_t r) {
 	if (p - r > 64) {
+		std::cout<<"noch keine abbruch der rekurion"<<std::endl;
 		size_t q = hoare_partition(arr, p, r);
 		startHybridQuickSort(arr, p, q);
 		startHybridQuickSort(arr, q + 1, r);
 	} else {
+		std::cout<<"rec cancel and start insertion sort"<<std::endl;
 		//insertion sort for this part of array
+		insertionSortPrefetch(arr,p,r);
 	}
 }
 
@@ -74,7 +77,6 @@ void hybridQuickSort(std::array<T, SIZE> &arr){
 		//merge array
 		std::shared_ptr<std::array<T, SIZE>> workingArray(new std::array<T, SIZE>);
 		mergeBitonic(arr,*workingArray,middleOfArray);
-
 	} else {
 		startHybridQuickSort(arr,0,SIZE-1);
 	}
