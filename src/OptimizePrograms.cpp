@@ -21,12 +21,12 @@ int main(int argc, char** argv){
 //		cout << endl;
 //	}
 //
-//	for (int i = 5; i < 8; i++) {
-//		cout << ALGO[i] << " Typ Double" << endl;
-//		recTime<double, SIZEbig> testDouble;
-//		testDouble.meassureTimeSort(i);
-//		cout << endl;
-//	}
+	for (int i = 6; i < 8; i++) {
+		cout << ALGO[i] << " Typ Double" << endl;
+		recTime<double, SIZEbig> testDouble;
+		testDouble.meassureTimeSort(i);
+		cout << endl;
+	}
 	return 0;
 }
 

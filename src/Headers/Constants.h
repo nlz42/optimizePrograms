@@ -29,7 +29,7 @@ const size_t RecCancel = 8192; // 2^13
 
 const std::string ALGO[]={
 		"SelectionsSortNormal","SelectionSort2Loops","SelectionsSortPrefetch","InsertionSortNormal","InsertionSortPrefetch",
-		"mergeSort","quickSort","hybridQuickSort"
+		"mergeSort","quickSort","threeWaySortHybridStart"
 };
 
 #endif /* HEADERS_CONSTANTS_H_ */

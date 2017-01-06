@@ -16,11 +16,10 @@
 #include <cstdio>
 #endif
 
-
 #include <iostream>
+#include <memory>
 #include<array>
 #include <stdlib.h>
-#include <memory>
 #include "gtest/gtest.h"
 #include "Constants.h"
 #include "SelectionSort.h"

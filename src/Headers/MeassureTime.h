@@ -69,12 +69,12 @@ struct recTime {
 		case 5:
 			return mergeSort<T, (SIZE)> ;
 			break;
-//		case 6:
-//			return quickSort<T, (SIZE)> ;
-//			break;
-//		case 7:
-//			return hybridQuickSort<T, (SIZE)> ;
-//			break;
+		case 6:
+			return quickSort<SIZE,T> ;
+			break;
+		case 7:
+			return threeWaySortHybridStart<T, (SIZE)> ;
+			break;
 		default:
 			std::cout << std::endl << "ERROR ### ERROR" << std::endl;
 			exit(1);

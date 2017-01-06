@@ -11,7 +11,7 @@
 #include "CheckArrrays.h"
 #include "ButtomUpMergesort.h"
 
-template<std::size_t N, typename T>
+template< typename T,std::size_t N>
 void threeWaySort(std::array<T, N> &a, size_t lo, size_t hi) {
 	if (hi <= lo) {
 		return;
@@ -32,8 +32,8 @@ void threeWaySort(std::array<T, N> &a, size_t lo, size_t hi) {
 			i++;
 		}
 	}
-	threeWaySort(a, lo, lt - 1);
-	threeWaySort(a, gt + 1, hi);
+	threeWaySort(a, lo, (lt-1));
+	threeWaySort(a, (gt+1), hi);
 }
 
 template<std::size_t N, typename T>
@@ -71,7 +71,7 @@ void threeWaySortHybrid(std::array<T, N> &a, size_t lo, size_t hi) {
 	}
 }
 
-template<std::size_t N, typename T>
+template< typename T, std::size_t N>
 void threeWaySortHybridStart(std::array<T, N> &a) {
 	if (checkArray(a) == 1) {
 		return; // array is already sorted
@@ -87,7 +87,11 @@ void threeWaySortHybridStart(std::array<T, N> &a) {
 	} else {
 		threeWaySortHybrid(a, 0, N - 1);
 	}
+}
 
+template<std::size_t N,typename T>
+void quickSort(std::array<T, N> &a) {
+	threeWaySort(a,0,(N-1));
 }
 
 #endif /* HEADERS_QUICKSORT_H_ */
