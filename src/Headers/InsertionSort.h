@@ -28,7 +28,7 @@ void insertionSortPrefetchIndexes(std::array<T, SIZE> &array, size_t startIndex,
 		index=i;
 		for (; array[index-1]>array[index] && index>startIndex;) {
 			__builtin_prefetch(&array[index - (2*STEP)]);
-			for(size_t k=(STEP);index>startIndex && k>startIndex && array[index-1]>array[index];k--){
+			for(size_t k=(STEP);index>startIndex && k>0 && array[index-1]>array[index];k--){
 				std::swap(array[index-1], array[index]);
 				index = index-1;
 			}

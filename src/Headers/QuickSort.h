@@ -12,73 +12,82 @@
 #include "ButtomUpMergesort.h"
 
 template<std::size_t N, typename T>
-size_t hoare_partition(std::array<T, N>& arr, size_t p, size_t r) {
-	T x = arr[p];
-	size_t i = p - 1;
-	size_t j = r + 1;
-	//hoare_partition
-	while (true) {
-		do {
-			j--;
-		} while (arr[j] > x);
-
-		do {
+void threeWaySort(std::array<T, N> &a, size_t lo, size_t hi) {
+	if (hi <= lo) {
+		return;
+	}
+	size_t lt = lo;
+	size_t gt = hi;
+	T p = a[lo];
+	size_t i = lo;
+	while (i <= gt) {
+		if (p > a[i]) {
+			std::swap(a[lt], a[i]);
+			lt++;
 			i++;
-		} while (arr[i] < x);
-
-		if (i < j) {
-			std::swap(arr[i], arr[j]);
+		} else if (p < a[i]) {
+			std::swap(a[i], a[gt]);
+			gt--;
 		} else {
-			return j;
+			i++;
 		}
-
 	}
+	threeWaySort(a, lo, lt - 1);
+	threeWaySort(a, gt + 1, hi);
 }
 
 template<std::size_t N, typename T>
-void startquickSort(std::array<T, N>& arr, size_t p, size_t r) {
-	if (p < r) {
-		size_t q = hoare_partition(arr, p, r);
-		startquickSort(arr, p, q);
-		startquickSort(arr, q + 1, r);
+void threeWaySortHybrid(std::array<T, N> &a, size_t lo, size_t hi) {
+	if (hi <= lo) {
+		return;
 	}
-}
+	size_t lt = lo;
+	size_t gt = hi;
+	T p = a[lo];
+	size_t i = lo;
+	while (i <= gt) {
+		if (p > a[i]) {
+			std::swap(a[lt], a[i]);
+			lt++;
+			i++;
+		} else if (p < a[i]) {
+			std::swap(a[i], a[gt]);
+			gt--;
+		} else {
+			i++;
+		}
+	}
 
-template<std::size_t N, typename T>
-void startHybridQuickSort(std::array<T, N>& arr, size_t p, size_t r) {
-	if (p - r > 64) {
-		size_t q = hoare_partition(arr, p, r);
-		startHybridQuickSort(arr, p, q);
-		startHybridQuickSort(arr, q + 1, r);
+	if( (lt-1)-lo < 1024){
+		insertionSortPrefetchIndexes(a,lo,lt-1);
 	} else {
-		//insertion sort for this part of array
-		insertionSortPrefetchIndexes(arr,p,r);
+		threeWaySortHybrid(a, lo, lt - 1);
+	}
+
+	if(hi - (gt+1) < 1024){
+		insertionSortPrefetchIndexes(a,gt+1,hi);
+	} else{
+		threeWaySortHybrid(a, gt + 1, hi);
 	}
 }
 
-template<typename T, std::size_t SIZE>
-void quickSort(std::array<T, SIZE>& arr) {
-	startquickSort(arr, 0, SIZE - 1);
-}
-
-template<typename T,std::size_t SIZE>
-void hybridQuickSort(std::array<T, SIZE> &arr){
-	//worst-Case
-	if (checkArray(arr) == 1){
+template<std::size_t N, typename T>
+void threeWaySortHybridStart(std::array<T, N> &a) {
+	if (checkArray(a) == 1) {
 		return; // array is already sorted
 	}
-	if(checkArrayDesc(arr) == 1){
+	if (checkArrayDesc(a) == 1) {
 		//Worst Case is descending ordered array
-		size_t middleOfArray = SIZE/2;
-		startquickSort(arr,0,middleOfArray-1);
-		startquickSort(arr,middleOfArray,SIZE-1);
+		size_t middleOfArray = N / 2;
+		threeWaySortHybrid(a, 0, middleOfArray - 1);
+		threeWaySortHybrid(a, middleOfArray, N - 1);
 		//merge array
-		std::shared_ptr<std::array<T, SIZE>> workingArray(new std::array<T, SIZE>);
-		mergeBitonic(arr,*workingArray,middleOfArray);
+		std::shared_ptr<std::array<T, N>> workingArray(new std::array<T, N>);
+		mergeBitonic(a, *workingArray, middleOfArray);
 	} else {
-		startHybridQuickSort(arr,0,SIZE-1);
+		threeWaySortHybrid(a, 0, N - 1);
 	}
-}
 
+}
 
 #endif /* HEADERS_QUICKSORT_H_ */

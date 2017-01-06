@@ -9,24 +9,24 @@
 
 using namespace std;
 
-//int main(int argc, char** argv){
-int main() {
-//	::testing::InitGoogleTest(&argc, argv);
-//	runAllTests();
+int main(int argc, char** argv){
+//int main() {
+	::testing::InitGoogleTest(&argc, argv);
+	runAllTests();
 
 //	for (int i = 0; i < 5; i++) {
 //		cout << ALGO[i] << " Typ Double" << endl;
-//		recTime<double, SIZEsmall> testDouble;
+//			recTime<double, SIZEsmall> testDouble;
+//			testDouble.meassureTimeSort(i);
+//		cout << endl;
+//	}
+//
+//	for (int i = 5; i < 8; i++) {
+//		cout << ALGO[i] << " Typ Double" << endl;
+//		recTime<double, SIZEbig> testDouble;
 //		testDouble.meassureTimeSort(i);
 //		cout << endl;
 //	}
-
-	for (int i = 5; i < 8; i++) {
-		cout << ALGO[i] << " Typ Double" << endl;
-		recTime<double, SIZEbig> testDouble;
-		testDouble.meassureTimeSort(i);
-		cout << endl;
-	}
 	return 0;
 }
 

@@ -26,7 +26,7 @@ struct recTime {
 		std::shared_ptr<std::array<T, SIZE>> array(new std::array<T, SIZE>);
 
 		auto pFunc1 = choiceAlgoSimple(algo);
-		for (size_t i = 0; i<3; i++) {
+		for (size_t i = 0; i < 3; i++) {
 			initArrayValues(i, *array);
 			flushCache();
 			auto start_time = std::chrono::high_resolution_clock::now();
@@ -36,6 +36,12 @@ struct recTime {
 					<< std::chrono::duration_cast<std::chrono::milliseconds>(
 							end_time - start_time).count() << ",ms,"
 					<< " bei N=," << SIZE << std::endl;
+			if (algo == 6  && SIZE >= SIZEsmall) {
+				i += 2; // cancel couse n^2 runtime (worstcases)
+			}
+			if (algo == 7 && i == 1 && SIZE > SIZEsmall) {
+				i++; // cancel couse n^2 runtime (worstcases)
+			}
 
 		}
 		recTime<T, (SIZE / 2)> tc;
@@ -55,20 +61,20 @@ struct recTime {
 			return selectionSortPrefetch<T, (SIZE)> ;
 			break;
 		case 3:
-			return insertionSortNormal<T, (SIZE)>;
+			return insertionSortNormal<T, (SIZE)> ;
 			break;
 		case 4:
-			return insertionSortPrefetch<T, (SIZE)>;
+			return insertionSortPrefetch<T, (SIZE)> ;
 			break;
 		case 5:
-			return mergeSort<T, (SIZE)>;
+			return mergeSort<T, (SIZE)> ;
 			break;
-		case 6:
-			return quickSort<T, (SIZE)>;
-			break;
-		case 7:
-			return hybridQuickSort<T, (SIZE)>;
-			break;
+//		case 6:
+//			return quickSort<T, (SIZE)> ;
+//			break;
+//		case 7:
+//			return hybridQuickSort<T, (SIZE)> ;
+//			break;
 		default:
 			std::cout << std::endl << "ERROR ### ERROR" << std::endl;
 			exit(1);
