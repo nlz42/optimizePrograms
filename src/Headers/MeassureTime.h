@@ -14,6 +14,9 @@
 #include "TestArrays.h"
 #include "Constants.h"
 #include "SelectionSort.h"
+#include "ButtomUpMergesort.h"
+#include "InsertionSort.h"
+#include "QuickSort.h"
 #include <array>
 #include <stdlib.h>
 
@@ -56,6 +59,15 @@ struct recTime {
 			break;
 		case 4:
 			return insertionSortPrefetch<T, (SIZE)>;
+			break;
+		case 5:
+			return mergeSort<T, (SIZE)>;
+			break;
+		case 6:
+			return quickSort<T, (SIZE)>;
+			break;
+		case 7:
+			return hybridQuickSort<T, (SIZE)>;
 			break;
 		default:
 			std::cout << std::endl << "ERROR ### ERROR" << std::endl;

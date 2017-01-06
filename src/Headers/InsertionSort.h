@@ -21,7 +21,7 @@ void insertionSortNormal(std::array<T, SIZE> &array) {
 }
 
 template<typename T, size_t SIZE>
-void insertionSortPrefetch(std::array<T, SIZE> &array, size_t startIndex, size_t endIndex) {
+void insertionSortPrefetchIndexes(std::array<T, SIZE> &array, size_t startIndex, size_t endIndex) {
 	const size_t STEP = LINE_SIZE / sizeof(T);
 	size_t index=0;
 	for (size_t i = startIndex+1; i <= endIndex; i++) {
@@ -35,5 +35,11 @@ void insertionSortPrefetch(std::array<T, SIZE> &array, size_t startIndex, size_t
 		}
 	}
 }
+
+template<typename T, size_t SIZE>
+void insertionSortPrefetch(std::array<T, SIZE> &array) {
+	insertionSortPrefetchIndexes(array,0,SIZE-1);
+}
+
 
 #endif /* HEADERS_INSERTIONSORT_H_ */

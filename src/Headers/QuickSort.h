@@ -47,23 +47,21 @@ void startquickSort(std::array<T, N>& arr, size_t p, size_t r) {
 template<std::size_t N, typename T>
 void startHybridQuickSort(std::array<T, N>& arr, size_t p, size_t r) {
 	if (p - r > 64) {
-		std::cout<<"noch keine abbruch der rekurion"<<std::endl;
 		size_t q = hoare_partition(arr, p, r);
 		startHybridQuickSort(arr, p, q);
 		startHybridQuickSort(arr, q + 1, r);
 	} else {
-		std::cout<<"rec cancel and start insertion sort"<<std::endl;
 		//insertion sort for this part of array
-		insertionSortPrefetch(arr,p,r);
+		insertionSortPrefetchIndexes(arr,p,r);
 	}
 }
 
-template<std::size_t SIZE, typename T>
+template<typename T, std::size_t SIZE>
 void quickSort(std::array<T, SIZE>& arr) {
 	startquickSort(arr, 0, SIZE - 1);
 }
 
-template<std::size_t SIZE, typename T>
+template<typename T,std::size_t SIZE>
 void hybridQuickSort(std::array<T, SIZE> &arr){
 	//worst-Case
 	if (checkArray(arr) == 1){
