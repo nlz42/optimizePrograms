@@ -33,7 +33,7 @@ void threeWaySort(std::array<T, N> &a, size_t lo, size_t hi) {
 		}
 	}
 	threeWaySort(a, lo, (lt==0)? 0:(lt-1) );
-	threeWaySort(a, (gt+1), hi);
+	threeWaySort(a, gt+1, hi);
 }
 
 template<std::size_t N, typename T>
@@ -77,7 +77,6 @@ void quicksortHybrid(std::array<T, N> &a) {
 		return; // array is already sorted
 	}
 	if (checkArrayDesc(a) == 1) {
-		//Worst Case is descending ordered array
 		size_t middleOfArray = N / 2;
 		threeWaySortHybrid(a, 0, middleOfArray - 1);
 		threeWaySortHybrid(a, middleOfArray, N - 1);

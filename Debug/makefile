@@ -44,7 +44,7 @@ all: OptimizePrograms.exe
 OptimizePrograms.exe: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: Cygwin C++ Linker'
-	g++  -o "OptimizePrograms.exe" $(OBJS) $(USER_OBJS) $(LIBS)
+	g++ -Wl,--stack,0xFFFFFF -o "OptimizePrograms.exe" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 

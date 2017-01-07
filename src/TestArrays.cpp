@@ -150,7 +150,7 @@ TEST (TestQuickSort, normal) {
 	quickSort(*testArrayDESC);
 	EXPECT_EQ(1, checkArray(*testArrayDESC));
 	//test with random array
-	std::shared_ptr<array<double, SIZEbig*2>> testArrayR(new array<double, SIZEbig*2>);
+	std::shared_ptr<array<double, SIZEbig>> testArrayR(new array<double, SIZEbig>);
 	initArray(*testArrayR);
 	quickSort(*testArrayR);
 	EXPECT_EQ(1, checkArray(*testArrayR));
@@ -163,7 +163,7 @@ TEST (TestQuickSortHybrid, normal) {
 	quicksortHybrid(*testArrayDESC);
 	EXPECT_EQ(1, checkArray(*testArrayDESC));
 	//test with random array
-	std::shared_ptr<array<double, SIZEbig*2>> testArrayRandom(new array<double, SIZEbig*2>);
+	std::shared_ptr<array<double, SIZEbig>> testArrayRandom(new array<double, SIZEbig>);
 	initArray(*testArrayRandom);
 	quicksortHybrid(*testArrayRandom);
 	EXPECT_EQ(1, checkArray(*testArrayRandom));
