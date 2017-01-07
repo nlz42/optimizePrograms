@@ -144,16 +144,13 @@ TEST (TestButoomUp, normal) {
 }
 
 TEST (TestQuickSort, normal) {
-	flushCache();
-
 	//test with descending sorted array (worst-case)
-	std::shared_ptr<array<double, 100>> testArrayDESC(new array<double, 100>);
+	std::shared_ptr<array<double, 97>> testArrayDESC(new array<double, 97>);
 	initArrayDescending(*testArrayDESC);
 	quickSort(*testArrayDESC);
 	EXPECT_EQ(1, checkArray(*testArrayDESC));
-	testArrayDESC.reset();
 	//test with random array
-	std::shared_ptr<array<double, SIZEbig>> testArrayR(new array<double, SIZEbig>);
+	std::shared_ptr<array<double, SIZEbig*2>> testArrayR(new array<double, SIZEbig*2>);
 	initArray(*testArrayR);
 	quickSort(*testArrayR);
 	EXPECT_EQ(1, checkArray(*testArrayR));
@@ -163,15 +160,13 @@ TEST (TestQuickSortHybrid, normal) {
 	//test with descending sorted array (worst-case)
 	std::shared_ptr<array<double, 100>> testArrayDESC(new array<double, 100>);
 	initArrayDescending(*testArrayDESC);
-	threeWaySortHybridStart(*testArrayDESC);
+	quicksortHybrid(*testArrayDESC);
 	EXPECT_EQ(1, checkArray(*testArrayDESC));
-	testArrayDESC.reset();
 	//test with random array
-	std::shared_ptr<array<double, SIZEsmall>> testArrayRandom(new array<double, SIZEsmall>);
+	std::shared_ptr<array<double, SIZEbig*2>> testArrayRandom(new array<double, SIZEbig*2>);
 	initArray(*testArrayRandom);
-	threeWaySortHybridStart(*testArrayRandom);
+	quicksortHybrid(*testArrayRandom);
 	EXPECT_EQ(1, checkArray(*testArrayRandom));
-	testArrayRandom.reset();
 }
 
 

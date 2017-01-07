@@ -32,7 +32,7 @@ void threeWaySort(std::array<T, N> &a, size_t lo, size_t hi) {
 			i++;
 		}
 	}
-	threeWaySort(a, lo, (lt-1));
+	threeWaySort(a, lo, (lt==0)? 0:(lt-1) );
 	threeWaySort(a, (gt+1), hi);
 }
 
@@ -58,13 +58,13 @@ void threeWaySortHybrid(std::array<T, N> &a, size_t lo, size_t hi) {
 		}
 	}
 
-	if( (lt-1)-lo < 1024){
-		insertionSortPrefetchIndexes(a,lo,lt-1);
+	if( ((lt==0)? 0:(lt-1))-lo < 50){
+		insertionSortPrefetchIndexes(a,lo,(lt==0)? 0:(lt-1));
 	} else {
-		threeWaySortHybrid(a, lo, lt - 1);
+		threeWaySortHybrid(a, lo,  (lt==0)? 0:(lt-1));
 	}
 
-	if(hi - (gt+1) < 1024){
+	if(hi - (gt+1) < 50){
 		insertionSortPrefetchIndexes(a,gt+1,hi);
 	} else{
 		threeWaySortHybrid(a, gt + 1, hi);
@@ -72,7 +72,7 @@ void threeWaySortHybrid(std::array<T, N> &a, size_t lo, size_t hi) {
 }
 
 template< typename T, std::size_t N>
-void threeWaySortHybridStart(std::array<T, N> &a) {
+void quicksortHybrid(std::array<T, N> &a) {
 	if (checkArray(a) == 1) {
 		return; // array is already sorted
 	}

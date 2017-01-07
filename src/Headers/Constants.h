@@ -19,7 +19,7 @@
 const int LINE_SIZE = 64;
 const int L1_CACHE_SIZE = 4096;
 const size_t SIZEsmall = 262144 ; //2^18 for qudratic O-runtime
-const size_t SIZEbig = 134217728; // 2^27 // ful memory with double values
+const size_t SIZEbig = 268435456; // 2^28 // ful memory with double values
 //Const für array erzeugung und rekurions abbruch
 const int MIN = 1;
 const int MAX = 500;
@@ -29,7 +29,7 @@ const size_t RecCancel = 8192; // 2^13
 
 const std::string ALGO[]={
 		"SelectionsSortNormal","SelectionSort2Loops","SelectionsSortPrefetch","InsertionSortNormal","InsertionSortPrefetch",
-		"mergeSort","quickSort","threeWaySortHybridStart"
+		"mergeSort","quickSort","quicksortHybrid"
 };
 
 #endif /* HEADERS_CONSTANTS_H_ */

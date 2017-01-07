@@ -36,7 +36,7 @@ struct recTime {
 					<< std::chrono::duration_cast<std::chrono::milliseconds>(
 							end_time - start_time).count() << ",ms,"
 					<< " bei N=," << SIZE << std::endl;
-			if (algo == 6  && SIZE >= SIZEsmall) {
+			if (algo == 6  && SIZE > SIZEsmall) {
 				i += 2; // cancel couse n^2 runtime (worstcases)
 			}
 			if (algo == 7 && i == 1 && SIZE > SIZEsmall) {
@@ -73,7 +73,7 @@ struct recTime {
 			return quickSort<SIZE,T> ;
 			break;
 		case 7:
-			return threeWaySortHybridStart<T, (SIZE)> ;
+			return quicksortHybrid<T, (SIZE)> ;
 			break;
 		default:
 			std::cout << std::endl << "ERROR ### ERROR" << std::endl;
