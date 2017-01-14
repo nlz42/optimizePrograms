@@ -10,87 +10,151 @@
 
 #include "CheckArrrays.h"
 #include "ButtomUpMergesort.h"
+#include "Constants.h"
 
-template< typename T,std::size_t N>
-void threeWaySort(std::array<T, N> &a, size_t lo, size_t hi) {
-	if (hi <= lo) {
+template<typename T, std::size_t N>
+void threeWaySort(std::array<T, N> &a, size_t l, size_t r) {
+
+	if (r <= l) {
 		return;
 	}
-	size_t lt = lo;
-	size_t gt = hi;
-	T p = a[lo];
-	size_t i = lo;
-	while (i <= gt) {
-		if (p > a[i]) {
-			std::swap(a[lt], a[i]);
-			lt++;
-			i++;
-		} else if (p < a[i]) {
-			std::swap(a[i], a[gt]);
-			gt--;
-		} else {
-			i++;
+
+	size_t i = l - 1;
+	size_t j = r;
+	size_t p = l;
+	size_t q = r - 1;
+
+	std::swap(a[(l + r) / 2], a[r]);
+	T v = a[r];
+
+	for (;;) {
+		while (a[++i] < v)
+			;
+
+		while (v < a[--j]) {
+			if (j == l)
+				break;
+		}
+		if (i >= j) {
+			break;
+		}
+
+		std::swap(a[i], a[j]);
+
+		if (a[i] == v) {
+			std::swap(a[p], a[i]);
+			p++;
+		}
+		if (v == a[j]) {
+			std::swap(a[j], a[q]);
+			q--;
 		}
 	}
-	threeWaySort(a, lo, (lt==0)? 0:(lt-1) );
-	threeWaySort(a, gt+1, hi);
+
+	std::swap(a[i], a[r]);
+
+	j = (i == 0) ? 0 : (i - 1);
+	i = i + 1;
+
+	for (size_t k = l; k < p; k++) {
+		std::swap(a[k], a[j]);
+		if (j > 0) {
+			j--;
+		}
+	}
+
+	for (size_t k = r - 1; k > q; k--, i++) {
+		std::swap(a[i], a[k]);
+	}
+
+	threeWaySort(a, l, j);
+	threeWaySort(a, i, r);
 }
 
 template<std::size_t N, typename T>
-void threeWaySortHybrid(std::array<T, N> &a, size_t lo, size_t hi) {
-	if (hi <= lo) {
+void threeWaySortHybrid(std::array<T, N> &a, size_t l, size_t r) {
+	if (r <= l) {
 		return;
 	}
-	size_t lt = lo;
-	size_t gt = hi;
-	T p = a[lo];
-	size_t i = lo;
-	while (i <= gt) {
-		if (p > a[i]) {
-			std::swap(a[lt], a[i]);
-			lt++;
-			i++;
-		} else if (p < a[i]) {
-			std::swap(a[i], a[gt]);
-			gt--;
-		} else {
-			i++;
+	if ((r - l) <= 50) {
+		insertionSortPrefetchIndexes(a, l, r);
+	} else {
+		/**
+		 *
+		 */
+		size_t i = l - 1;
+		size_t j = r;
+		size_t p = l;
+		size_t q = r - 1;
+
+		std::swap(a[(l + r) / 2], a[r]);
+		T v = a[r];
+
+		for (;;) {
+			while (a[++i] < v)
+				;
+
+			while (v < a[--j]) {
+				if (j == l)
+					break;
+			}
+			if (i >= j) {
+				break;
+			}
+
+			std::swap(a[i], a[j]);
+
+			if (a[i] == v) {
+				std::swap(a[p], a[i]);
+				p++;
+			}
+			if (v == a[j]) {
+				std::swap(a[j], a[q]);
+				q--;
+			}
 		}
+
+		std::swap(a[i], a[r]);
+
+		j = (i == 0) ? 0 : (i - 1);
+		i = i + 1;
+
+		for (size_t k = l; k < p; k++) {
+			std::swap(a[k], a[j]);
+			if (j > 0) {
+				j--;
+			}
+		}
+
+		for (size_t k = r - 1; k > q; k--, i++) {
+			std::swap(a[i], a[k]);
+		}
+
+		if (((j - l) < WORST_CASE_CONST * (r - i))
+				|| ((j - l) * WORST_CASE_CONST < (r - i))) {
+			size_t middle = (l + r) / 2;
+			threeWaySortHybrid(a, l, middle);
+			threeWaySortHybrid(a, middle + 1, r);
+			std::shared_ptr<std::array<T, N>> wrkArray(new std::array<T, N>);
+			mergeBitonic(a, *wrkArray, middle + 1, l, r);
+
+		} else {
+			threeWaySortHybrid(a, l, j);
+			threeWaySortHybrid(a, i, r);
+		}
+
 	}
 
-	if( ((lt==0)? 0:(lt-1))-lo < 50){
-		insertionSortPrefetchIndexes(a,lo,(lt==0)? 0:(lt-1));
-	} else {
-		threeWaySortHybrid(a, lo,  (lt==0)? 0:(lt-1));
-	}
-
-	if(hi - (gt+1) < 50){
-		insertionSortPrefetchIndexes(a,gt+1,hi);
-	} else{
-		threeWaySortHybrid(a, gt + 1, hi);
-	}
 }
 
-template< typename T, std::size_t N>
+template<typename T, std::size_t N>
 void quicksortHybrid(std::array<T, N> &a) {
-	if (checkArray(a) == 1) {
-		return; // array is already sorted
-	}
-	if (checkArrayDesc(a) == 1) {
-		size_t middleOfArray = N / 2;
-		threeWaySortHybrid(a, 0, middleOfArray - 1);
-		threeWaySortHybrid(a, middleOfArray, N - 1);
-		//merge array
-		std::shared_ptr<std::array<T, N>> workingArray(new std::array<T, N>);
-		mergeBitonic(a, *workingArray, middleOfArray);
-	} else {
-		threeWaySortHybrid(a, 0, N - 1);
-	}
+	threeWaySortHybrid(a, 0, N - 1);
 }
 
-template<std::size_t N,typename T>
+template<std::size_t N, typename T>
 void quickSort(std::array<T, N> &a) {
-	threeWaySort(a,0,(N-1));
+	threeWaySort(a, 0, (N - 1));
 }
 
 #endif /* HEADERS_QUICKSORT_H_ */

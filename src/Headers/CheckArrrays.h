@@ -30,6 +30,4 @@ int checkArrayDesc(std::array<T,SIZE> &array) {
 	return result;
 }
 
-
-
 #endif /* HEADERS_CHECKARRRAYS_H_ */
