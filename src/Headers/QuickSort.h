@@ -72,7 +72,7 @@ void threeWaySort(std::array<T, N> &a, size_t l, size_t r) {
 }
 
 template<std::size_t N, typename T>
-void threeWaySortHybrid(std::array<T, N> &a, size_t l, size_t r) {
+void threeWaySortHybrid(std::array<T, N> &a,std::array<T, N> &wrkArray, size_t l, size_t r) {
 	if (r <= l) {
 		return;
 	}
@@ -130,17 +130,17 @@ void threeWaySortHybrid(std::array<T, N> &a, size_t l, size_t r) {
 			std::swap(a[i], a[k]);
 		}
 
+
 		if (((j - l) < WORST_CASE_CONST * (r - i))
 				|| ((j - l) * WORST_CASE_CONST < (r - i))) {
 			size_t middle = (l + r) / 2;
-			threeWaySortHybrid(a, l, middle);
-			threeWaySortHybrid(a, middle + 1, r);
-			std::shared_ptr<std::array<T, N>> wrkArray(new std::array<T, N>);
-			mergeBitonic(a, *wrkArray, middle + 1, l, r);
+			threeWaySortHybrid(a,wrkArray, l, middle);
+			threeWaySortHybrid(a,wrkArray, middle + 1, r);
+			mergeBitonic(a, wrkArray, middle + 1, l, r);
 
 		} else {
-			threeWaySortHybrid(a, l, j);
-			threeWaySortHybrid(a, i, r);
+			threeWaySortHybrid(a,wrkArray, l, j);
+			threeWaySortHybrid(a,wrkArray, i, r);
 		}
 
 	}
@@ -149,7 +149,8 @@ void threeWaySortHybrid(std::array<T, N> &a, size_t l, size_t r) {
 
 template<typename T, std::size_t N>
 void quicksortHybrid(std::array<T, N> &a) {
-	threeWaySortHybrid(a, 0, N - 1);
+	std::shared_ptr<std::array<T, N>> wrkArray(new std::array<T, N>);
+	threeWaySortHybrid(a,*wrkArray, 0, N - 1);
 }
 
 template<std::size_t N, typename T>
