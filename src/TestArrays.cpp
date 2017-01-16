@@ -133,8 +133,17 @@ TEST (TestButoomUp, normal) {
 	std::shared_ptr<array<double, 8>> testArrayD(new array<double, 8>);
 	initArray(*testArrayD);
 	mergeSort(*testArrayD);
-//
 	EXPECT_EQ(1, checkArray(*testArrayD));
+
+	std::shared_ptr<array<double, 1024>> testArrayDesc(new array<double, 1024>);
+	initArrayDescending(*testArrayDesc);
+	mergeSort(*testArrayDesc);
+	EXPECT_EQ(1, checkArray(*testArrayDesc));
+
+	std::shared_ptr<array<double, 8>> testArrayAsc(new array<double, 8>);
+	initArrayAscending(*testArrayAsc);
+	mergeSort(*testArrayAsc);
+	EXPECT_EQ(1, checkArray(*testArrayAsc));
 //
 //	std::shared_ptr<array<double, 8388608>> testArrayBIG(new array<double, 8388608>);
 //	initArray(*testArrayBIG);
@@ -145,15 +154,15 @@ TEST (TestButoomUp, normal) {
 
 TEST (TestQuickSort, normal) {
 	//test with descending sorted array (worst-case)
-	std::shared_ptr<array<double, 1000>> testArrayDESC(new array<double, 1000>);
+	std::shared_ptr<array<double, 1000000>> testArrayDESC(new array<double, 1000000>);
 	initArrayDescending(*testArrayDESC);
 	quickSort(*testArrayDESC);
 	EXPECT_EQ(1, checkArray(*testArrayDESC));
-	//test with random array
-	std::shared_ptr<array<double, SIZEsmall>> testArrayR(new array<double, SIZEsmall>);
-	initArray(*testArrayR);
-	quickSort(*testArrayR);
-	EXPECT_EQ(1, checkArray(*testArrayR));
+//	//test with random array
+//	std::shared_ptr<array<double, SIZEsmall>> testArrayR(new array<double, SIZEsmall>);
+//	initArray(*testArrayR);
+//	quickSort(*testArrayR);
+//	EXPECT_EQ(1, checkArray(*testArrayR));
 	//test with strng
 	array<string, 11> arrS;
 	arrS = { {"a","b","b","b","c","d","f","u","a","g","z"}};
@@ -163,15 +172,15 @@ TEST (TestQuickSort, normal) {
 
 TEST (TestQuickSortHybrid, normal) {
 	//test with descending sorted array (worst-case)
-	std::shared_ptr<array<double, 1000>> testArrayDESC(new array<double, 1000>);
+	std::shared_ptr<array<double, 1000000>> testArrayDESC(new array<double, 1000000>);
 	initArrayDescending(*testArrayDESC);
 	quicksortHybrid(*testArrayDESC);
 	EXPECT_EQ(1, checkArray(*testArrayDESC));
 	//test with random array
-	std::shared_ptr<array<double, SIZEsmall>> testArrayRandom(new array<double, SIZEsmall>);
-	initArray(*testArrayRandom);
-	quicksortHybrid(*testArrayRandom);
-	EXPECT_EQ(1, checkArray(*testArrayRandom));
+//	std::shared_ptr<array<double, SIZEsmall>> testArrayRandom(new array<double, SIZEsmall>);
+//	initArray(*testArrayRandom);
+//	quicksortHybrid(*testArrayRandom);
+//	EXPECT_EQ(1, checkArray(*testArrayRandom));
 	//test with strng
 	array<string, 11> arrS;
 	arrS = { {"a","b","b","b","c","d","f","u","a","g","z"}};

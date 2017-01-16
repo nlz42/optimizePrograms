@@ -76,12 +76,9 @@ void threeWaySortHybrid(std::array<T, N> &a,std::array<T, N> &wrkArray, size_t l
 	if (r <= l) {
 		return;
 	}
-	if ((r - l) <= 50) {
+	if ((r - l) <= SWITCH_SORT_ALGO) {
 		insertionSortPrefetchIndexes(a, l, r);
 	} else {
-		/**
-		 *
-		 */
 		size_t i = l - 1;
 		size_t j = r;
 		size_t p = l;
@@ -131,20 +128,17 @@ void threeWaySortHybrid(std::array<T, N> &a,std::array<T, N> &wrkArray, size_t l
 		}
 
 
-		if (((j - l) < WORST_CASE_CONST * (r - i))
-				|| ((j - l) * WORST_CASE_CONST < (r - i))) {
+		if (( (j - l) > (WORST_CASE_CONST * (r - i)) )
+				|| (    (r - i) >   ( (j - l) * WORST_CASE_CONST))) {
 			size_t middle = (l + r) / 2;
 			threeWaySortHybrid(a,wrkArray, l, middle);
 			threeWaySortHybrid(a,wrkArray, middle + 1, r);
 			mergeBitonic(a, wrkArray, middle + 1, l, r);
-
 		} else {
 			threeWaySortHybrid(a,wrkArray, l, j);
 			threeWaySortHybrid(a,wrkArray, i, r);
 		}
-
 	}
-
 }
 
 template<typename T, std::size_t N>
