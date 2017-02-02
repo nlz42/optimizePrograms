@@ -10,10 +10,10 @@
 
 template <typename T, size_t SIZE>
 int checkArray(std::array<T,SIZE> &array) {
-	int result = 1; // true
+	int result = 1;
 	for (size_t i = 0; i < array.size() - 1; i++) {
 		if (!(array[i] <= array[i + 1])) {
-			result = 0; // false
+			result = 0;
 		}
 	}
 	return result;
@@ -21,10 +21,10 @@ int checkArray(std::array<T,SIZE> &array) {
 
 template <typename T, size_t SIZE>
 int checkArrayDesc(std::array<T,SIZE> &array) {
-	int result = 1; // true
+	int result = 1;
 	for (size_t i = 0; i < array.size() - 1; i++) {
 		if (!(array[i] >= array[i + 1])) {
-			result = 0; // false
+			result = 0;
 		}
 	}
 	return result;

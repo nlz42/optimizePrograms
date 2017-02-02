@@ -9,11 +9,9 @@
 #include <cstdio>
 #endif
 
-//#include <chrono>
 #include <array>
 #include <memory>
 
-//#include "TestArrays.h"
 #include "MinimumSearch.h"
 #include "SelectionSort.h"
 #include "InsertionSort.h"

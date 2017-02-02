@@ -10,47 +10,43 @@
 #include <memory>
 
 template<typename T, size_t SIZE>
-//TODO mergebitonic mit grenzen anpassen
 void mergeBitonic(std::array<T, SIZE> &array, std::array<T, SIZE> &wrkArray,
 		size_t merge_step, size_t startIndex, size_t endIndex) {
-	size_t wrk_ptr = 0; // pointer for wrkArray
-	size_t left_ptr = 0; // left ptr of array
-	size_t right_ptr = 0; // right ptr of array
+	size_t wrk_ptr = 0;
+	size_t left_ptr = 0;
+	size_t right_ptr = 0;
 	size_t middle_border = merge_step;
 
-	//big loop
 	while (wrk_ptr <= endIndex) {
 
 		if (startIndex == 0 && endIndex == SIZE - 1) {
 			left_ptr = wrk_ptr;
 			right_ptr = middle_border + merge_step - 1;
 		} else {
-			wrk_ptr = startIndex; // pointer for wrkArray
-			left_ptr = startIndex; // left ptr of array
-			right_ptr = endIndex; // right ptr of array
+			wrk_ptr = startIndex;
+			left_ptr = startIndex;
+			right_ptr = endIndex;
 			middle_border = merge_step;
 		}
-		//copy left side to wrkarray
+
 		while (left_ptr < middle_border) {
 			wrkArray[wrk_ptr++] = array[left_ptr++];
 		}
-		//copy right side to wrkArray
+
 		while (right_ptr >= middle_border) {
 			wrkArray[wrk_ptr++] = array[right_ptr--];
 		}
 
-		//set back to orginal start values
 		if (startIndex == 0 && endIndex == SIZE - 1) {
 			left_ptr = middle_border - merge_step;
 			right_ptr = middle_border + merge_step - 1;
 			wrk_ptr = left_ptr;
 		} else {
-			wrk_ptr = startIndex; // pointer for wrkArray
-			left_ptr = startIndex; // left ptr of array
-			right_ptr = endIndex; // right ptr of array
+			wrk_ptr = startIndex;
+			left_ptr = startIndex;
+			right_ptr = endIndex;
 		}
 
-		//start sorting
 		while (left_ptr <= right_ptr) {
 			if (wrkArray[left_ptr] <= wrkArray[right_ptr]) {
 				array[wrk_ptr++] = wrkArray[left_ptr++];

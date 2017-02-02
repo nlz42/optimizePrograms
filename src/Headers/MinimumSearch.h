@@ -50,6 +50,4 @@ size_t minTwoLoopsPrefetch(std::array<T, SIZE> &a, size_t left) {
 	return minIndex;
 }
 
-
-
 #endif /* HEADERS_MINIMUMSEARCH_H_ */
